@@ -3,7 +3,7 @@
 var express = require("express");
 var authRoutes = require('./routes/auth-routes');
 var passportSetup = require('./config/passport-setup');
-const Sequelize = require('sequelize');
+var mongoose = require('mongoose');
 var keys = require('./config/keys')
 
 // Sets up the Express App
@@ -15,7 +15,7 @@ var PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 
 //connect to mongodb
-Sequelize.connect(keys.mongodb.dbURI, () => {
+mongoose.connect(keys.mongodb.dbURI, () => {
     console.log('connected to mongodb')
 })
 
@@ -28,8 +28,10 @@ app.get('/', (req, res) => {
 });
 
 
+
 // Starts the server to begin listening
 // =============================================================
-app.listen(PORT, function() {
-    console.log("App listening on: http://localhost:"+ PORT);
-  });
+var PORT = process.env.PORT || 3000;
+app.listen(PORT, function () {
+  console.log("Server listening on: http://localhost:" + PORT);
+});
