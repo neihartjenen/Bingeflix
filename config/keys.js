@@ -1,4 +1,4 @@
-//added rto .gitignore
+//added to .gitignore
 
 module.exports = {
     google:{

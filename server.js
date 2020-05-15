@@ -2,6 +2,7 @@
 // =============================================================
 var express = require("express");
 var authRoutes = require('./routes/auth-routes');
+var passportSetup = require('./config/passport-setup')
 
 // Sets up the Express App
 // =============================================================

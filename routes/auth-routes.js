@@ -1,4 +1,7 @@
+// Dependencies
+// =============================================================
 var router = require('express').Router();
+var passport = require('passport');
 
 // auth login
 router.get('/login', (req, res) => {
@@ -11,10 +14,14 @@ router.get('/logout', (req, res) => {
     res.send('logging out');
 });
 
-// auth with google
-router.get('/google', (req, res) => {
-    // handle with passport
-    res.send('logging in with Google');
+// auth with google, implement google strategy
+router.get('/google', passport.authenticate('google',{
+    scope: ['profile']
+}));
+
+//  callback route for google to redirect to
+router.get('/google/redirect', (req, res) => {
+    res.send('you reached the callback URL')
 });
 
 module.exports = router;
