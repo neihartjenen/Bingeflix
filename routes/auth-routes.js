@@ -1,25 +1,20 @@
-// router instance
 var router = require('express').Router();
 
-//auth login 'auth/login'
+// auth login
 router.get('/login', (req, res) => {
-    // renders login page w/ google button 'auth/login'
-    res.render('login');
+    res.render('login', { user: req.user });
 });
 
-//auth logout 'auth/logout'
+// auth logout
 router.get('/logout', (req, res) => {
-    //handle with passport
-    //placeholder
-    res.send('log out');
+    // handle with passport
+    res.send('logging out');
 });
 
-//auth w/ google 'auth/google'
+// auth with google
 router.get('/google', (req, res) => {
-    //handle with passport
-    //placeholder
-    res.send('login in with google')
+    // handle with passport
+    res.send('logging in with Google');
 });
 
-//exports router handlers
 module.exports = router;

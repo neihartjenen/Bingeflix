@@ -1,7 +1,7 @@
 // Dependencies
 // =============================================================
 var express = require("express");
-var authRoutes = require('./routes/auth-routes')
+var authRoutes = require('./routes/auth-routes');
 
 // Sets up the Express App
 // =============================================================
