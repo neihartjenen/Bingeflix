@@ -1,25 +1,27 @@
-// router instance
+// Dependencies
+// =============================================================
 var router = require('express').Router();
+var passport = require('passport');
 
-//auth login 'auth/login'
+// auth login
 router.get('/login', (req, res) => {
-    // renders login page w/ google button 'auth/login'
-    res.render('login');
+    res.render('login', { user: req.user });
 });
 
-//auth logout 'auth/logout'
+// auth logout
 router.get('/logout', (req, res) => {
-    //handle with passport
-    //placeholder
-    res.send('log out');
+    // handle with passport
+    res.send('logging out');
 });
 
-//auth w/ google 'auth/google'
-router.get('/google', (req, res) => {
-    //handle with passport
-    //placeholder
-    res.send('login in with google')
+// auth with google, implement google strategy
+router.get('/google', passport.authenticate('google',{
+    scope: ['profile']
+}));
+
+//  callback route for google to redirect
+router.get('/google/redirect', passport.authenticate('google'),(req, res) => {
+    res.send('you reached the callback URI')
 });
 
-//exports router handlers
 module.exports = router;
