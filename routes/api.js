@@ -4,18 +4,26 @@ $( document ).ready(function() {
 
     var createContent = function(data) {
         //created new p tag
-        var p = $("p");
+        var p = $("<p>");
+
+        var resultsDiv = $("<div>")
 
         var title = $("<p>").text(data.Title);
         var actors = $("<p>").text(data.Actors);
         var year = $("<p>").text(data.Year);
         var plot = $("<p>").text(data.Plot);
         // var poster = $("<img>").src(data.poster);
+        var poster = $("<img>");
+        poster.attr("src", data.Poster);
 
         p.append(title, actors, year, plot);
 
-        $("#searchResults").append(p)
-        
+        resultsDiv.append(p);
+        resultsDiv.append(poster);
+
+        $("#searchResults").prepend(resultsDiv);
+
+       
     }
     
     
@@ -35,5 +43,9 @@ $( document ).ready(function() {
         searchOMDB(movie)
         console.log(movie);
     });
+
+    // document.getElementById("#search").onclick = function () {
+    //     location.href = "searchPage.html";
+    // } 
     
 });
