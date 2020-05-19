@@ -3,21 +3,31 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var session = require("express-session");
-var db = require("./models");
+var passport = require("./config/passport");
 
 // Sets up the Express App
 // =============================================================
-var app = express();
 var PORT = process.env.PORT || 3000;
+var db = require("./models");
 
+var app = express();
 app.use(bodyParser.urlencoded({ extended: false })); //For body parser
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-//create home route
-app.get('/', function(req, res) {    
-  res.send('Welcome to Passport with Sequelize and without HandleBars');
-});
+// use sessions to keep track of user's login status
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Requiring our routes
+require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
+
+// //create home route
+// app.get('/', function(req, res) {    
+//   res.send('Welcome to Passport with Sequelize');
+// });
 
 
 
