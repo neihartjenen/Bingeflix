@@ -10,14 +10,13 @@ var db = require("./models");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-
 app.use(bodyParser.urlencoded({ extended: false })); //For body parser
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
 //create home route
-app.get('/', (req, res) => {
-    res.send('Welcome to Passport with Sequelize and without HandleBars');
+app.get('/', function(req, res) {    
+  res.send('Welcome to Passport with Sequelize and without HandleBars');
 });
 
 
@@ -28,4 +27,4 @@ db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("Server listening on: http://localhost:" + PORT);
   });
-
+});
