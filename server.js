@@ -21,15 +21,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Requiring routes
-require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
+require("./routes/html-routes.js")(app);
 
 // //create home route
 // app.get('/', function(req, res) {    
 //   res.send('test - hello world!');
 // });
-
-
 
 // Starts the server to begin listening
 // =============================================================
