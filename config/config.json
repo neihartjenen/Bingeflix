@@ -4,23 +4,22 @@
     "password": "x5y6eLST$",
     "database": "bingeflix_db",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "dialect": "mysql"
+   
   },
   "test": {
     "username": "root",
     "password": "x5y6eLST$",
     "database": "bingeflix_db",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "dialect": "mysql"
   },
+
   "production": {
     "username": "root",
-    "password": null,
-    "database": "database_production",
+    "password": "x5y6eLST$",
+    "database": "bingeflix_db",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "dialect": "mysql"
   }
 }
