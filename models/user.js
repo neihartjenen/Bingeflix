@@ -24,24 +24,24 @@ module.exports = function(sequelize, DataTypes) {
   // creating custom method for our User model. 
   // this will check if an unhashed password entered by the 
   // user can be compared to the hashed password stored in our database
-  User.prototype.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
-  };
+  // User.prototype.validPassword = function(password) {
+  //   return bcrypt.compareSync(password, this.password);
+  // };
 
-  // hooks are automatic methods that run during various phases of the User Model lifecycle
-  // before a User is created, we will automatically hash their password
+  // // hooks are automatic methods that run during various phases of the User Model lifecycle
+  // // before a User is created, we will automatically hash their password
 
-  // User.hook("beforeCreate", function(user) {
-  //   user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
-  // });
-  // return User;
+  // // User.hook("beforeCreate", function(user) {
+  // //   user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+  // // });
+  // // return User;
 
-  User.beforeCreate(user => {
-    user.password = bcrypt.hashSync(
-      user.password,
-       bcrypt.genSaltSync(10),
-       null
-     );
-   });
+  // User.beforeCreate(user => {
+  //   user.password = bcrypt.hashSync(
+  //     user.password,
+  //      bcrypt.genSaltSync(10),
+  //      null
+  //    );
+  //  });
    return User;
 };
