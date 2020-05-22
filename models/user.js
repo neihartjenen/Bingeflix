@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: [5, 10]
+          len: [6]
       }
     },
     hasBlog: DataTypes.BOOLEAN
@@ -49,9 +49,14 @@ module.exports = function(sequelize, DataTypes) {
      );
    });
 
-  User.associate = function(models) {
-    models.User.hasMany(models.Blog, { onDelete: 'cascade' });
-  };
+  // associating Users table to Events
+  User.associate = function(models){
+    // Each User can have many Events
+    models.User.hasMany(models.Event, {
+      // this deletes all associated Events a User is deleted
+      onDelete: "cascade"
+    })
+  }
 
    return User;
 };
