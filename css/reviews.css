@@ -7,7 +7,7 @@ body {
     margin-bottom: 100px;
     margin-right: 150px;
     margin-left: 80px;
-    background-color: #644E90;
+    background-color: rgb(193, 175, 230);
     background-repeat: repeat-x;
 }
 
@@ -114,4 +114,37 @@ input[type=text]:focus {
   }
 
  
- 
+  .container {
+    display: flex;
+    width: 95%;
+    padding: 4% 2%;
+    box-sizing: border-box;
+    height: 100%;
+  }
+  
+  .box {
+    flex: 1;
+    overflow: hidden;
+    transition: .5s;
+    margin: 0 2%;
+    box-shadow: 0 20px 30px rgba(0,0,0,.1);
+    line-height: 0;
+  }
+  .box > span {
+    font-size: 25px;
+    display: block;
+    text-align: center;
+    height: 10vh;
+    line-height: 2.6;
+  }
+  
+  .box:hover { flex: 1 1 50%; }
+  .box:hover > img {
+    width: 75%;
+    height: 75%;
+  }
+  .wrapper {
+    width: 600px;
+    padding-bottom: 20px;
+    margin: 0 auto;
+}
