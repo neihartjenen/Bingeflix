@@ -17,9 +17,13 @@ module.exports = function(sequelize, DataTypes) {
 
     // password cannot be null
     password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    }
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [5, 10]
+      }
+    },
+    hasBlog: DataTypes.BOOLEAN
   });
 
   // creating custom method for our User model. 
@@ -44,5 +48,10 @@ module.exports = function(sequelize, DataTypes) {
        null
      );
    });
+
+  User.associate = function(models) {
+    models.User.hasMany(models.Blog, { onDelete: 'cascade' });
+  };
+
    return User;
 };
