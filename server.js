@@ -1,37 +1,40 @@
 // Dependencies
 // =============================================================
 var express = require("express");
-var authRoutes = require('./routes/auth-routes');
-var passportSetup = require('./config/passport-setup');
-var mongoose = require('mongoose');
-var keys = require('./config/keys')
+var bodyParser = require("body-parser");
+var session = require("express-session");
+var passport = require("./config/passport");
+var path = require("path");
 
 // Sets up the Express App
 // =============================================================
-var app = express();
 var PORT = process.env.PORT || 3000;
+var db = require("./models");
 
-//set up view engine
-app.set('view engine', 'ejs');
+var app = express();
+app.use(bodyParser.urlencoded({ extended: false })); //For body parser
+app.use(bodyParser.urlencoded({ extended: true })); //For body parser
+app.use(bodyParser.json());
+app.use(express.static("public")); // set static root directory
 
-//connect to mongodb
-mongoose.connect(keys.mongodb.dbURI, () => {
-    console.log('connected to mongodb')
-})
+// use sessions to keep track of user's login status
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-//set up routes
-app.use('/auth', authRoutes);
+// Requiring routes
+require("./routes/api-routes.js")(app);
+require("./routes/html-routes.js")(app);
 
-//create home route
-app.get('/', (req, res) => {
-    res.render('home');
-});
-
-
+// //create home route
+// app.get('/', function(req, res) {    
+//   res.send('test - hello world!');
+// });
 
 // Starts the server to begin listening
 // =============================================================
-var PORT = process.env.PORT || 3000;
-app.listen(PORT, function () {
-  console.log("Server listening on: http://localhost:" + PORT);
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log("Server listening on: http://localhost:" + PORT);
+  });
 });
