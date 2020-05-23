@@ -51,11 +51,11 @@ module.exports = function(sequelize, DataTypes) {
      );
    });
 
-  // associating Users table to Events
+  // associating Users table to Reviews
   User.associate = function(models){
-    // Each User can have many Events
-    models.User.hasMany(models.Event, {
-      // this deletes all associated Events a User is deleted
+    // Each User can have many Reviews
+    models.User.hasMany(models.Review, {
+      // this deletes all associated Reviews a User is deleted
       onDelete: "cascade"
     })
   }
