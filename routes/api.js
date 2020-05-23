@@ -48,6 +48,7 @@ $(document).ready(function () {
         //this loads our search results page on button click
         // window.location = "searchPage.html";
         //supposed to allow enter press to search but not working
+        console.log("button pressed");
         event.preventDefault();
         //clears data from last search
         clear();
