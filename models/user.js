@@ -23,7 +23,9 @@ module.exports = function(sequelize, DataTypes) {
           len: [6]
       }
     },
-    hasBlog: DataTypes.BOOLEAN
+    // name: {
+    //   type: DataTypes.STRING,
+    // }
   });
 
   // creating custom method for our User model. 
