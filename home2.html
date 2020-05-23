@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>BINGEFLIX</title>
   <meta charset="utf-8">
@@ -11,84 +12,90 @@
   <link rel="stylesheet" type="text/css" href="css\style.css" />
 
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        
-        <a class="navbar-brand"></a>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+    <a class="navbar-brand"></a>
 
     <ul>
-       <li><button><a href="home2.html">Home</a></button></li> 
-       <li><button><a href="reviews.html">Reviews</a></button></li>  
-       <li><button><a href="login.html">Login</a></button></li>
+      <li><button><a href="home2.html">Home</a></button></li>
+      <li><button><a href="reviews.html">Reviews</a></button></li>
+      <li><button><a href="login.html">Login</a></button></li>
     </ul>
-     
-      </nav>
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1>BINGEFLIX</h1>      
-    <p>Be the first to know when your favorite TV Shows has a new review</p>
+
+  </nav>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1>BINGEFLIX</h1>
+      <p>Be the first to know when your favorite TV Shows has a new review</p>
+    </div>
   </div>
-</div>
-<hr />
-  <p4>Search Your Favorite Shows Here:</p4>
+  <hr />
+  <!-- <p4>Search Your Favorite Shows Here:</p4>
   <div>
     <form>
        <input type="text" name="search" placeholder="Search..">
-    </form>
-<hr />
+    </form> -->
+  <hr />
   </div>
-<div class="jumbotron jumbotron-fluid container2">
-  <section class="testimonial text-center"> 
-    <div class="container">
-    <h3 class="reviews"> The Reviews Are In !</h3>
-    <div class="divider"></div>
-    <div class="row">
-    <div class="col-md-4 col-testimonial">
-      <img class="rounded-circle" src="../images/profile-image-1.jpg">
-        <p> The Office ! </p>
-        <p class="quote-text">
-          "I've been watching TV throughout my entire life, and never in all that time has there been another show as charming, witty, and humorous as "The Office"
-        </p>
-        <p>
-          <span class="quote-author"> Jonathan Smith</span>
-        </p>
-      </img>
-    </div>
-    <div class="col-md-4 col-testimonial">
-      <img class="rounded-circle" src="images\profile-image-2.jpg">
-        <p> Friends ! </p>
-        <p class="quote-text">
-          "THE BEST SITCOM EVERRRR! i knew there was some series named friends but never got a chance to watch and this october i downloaded it to watch it some day when i'm free.""
-        </p>
-        <p>
-          <span class="quote-author"> Jane Donovan</span>
-        </p>
-      </img>
-    </div>
-    <div class="col-md-4 col-testimonial">
-      <img class="rounded-circle" src="images\profile-image-3.jpg">
-        <p> Outer Banks ! </p>
-        <p class="quote-text">
-          "I absolutely loved this show! I've always been a fan of coming of age and murder mystery type shows, so when you bring the genre's together it equals perfection.""
-        </p>
-        <p>
-          <span class="quote-author"> Samantha Davidson</span>
-        </p>
-      </img>
-    </div>
-    </div>
+  <div class="jumbotron jumbotron-fluid container2">
+    <section class="testimonial text-center">
+      <div class="container">
+        <h3 class="reviews"> The Reviews Are In !</h3>
+        <div class="divider"></div>
+        <div class="row" id="featured">
+          <div class="col-md-4 col-testimonial">
+            <img class="rounded-circle" src="" id="featured1">
+            <p> The Office ! </p>
+            <p class="quote-text">
+              "I've been watching TV throughout my entire life, and never in all that time has there been another show
+              as charming, witty, and humorous as "The Office"
+            </p>
+            <p>
+              <span class="quote-author"> Jonathan Smith</span>
+            </p>
+            </img>
+          </div>
+          <div class="col-md-4 col-testimonial">
+            <img class="rounded-circle" src="" id="featured2">
+            <p> Friends ! </p>
+            <p class="quote-text">
+              "THE BEST SITCOM EVERRRR! i knew there was some series named friends but never got a chance to watch and
+              this october i downloaded it to watch it some day when i'm free.""
+            </p>
+            <p>
+              <span class="quote-author"> Jane Donovan</span>
+            </p>
+            </img>
+          </div>
+          <div class="col-md-4 col-testimonial">
+            <img class="rounded-circle" src="" id="featured3">
+            <p> Outer Banks ! </p>
+            <p class="quote-text">
+              "I absolutely loved this show! I've always been a fan of coming of age and murder mystery type shows, so
+              when you bring the genre's together it equals perfection.""
+            </p>
+            <p>
+              <span class="quote-author"> Samantha Davidson</span>
+            </p>
+            </img>
+          </div>
+        </div>
 
-    </div>
-
-  </section>   
-</div> 
-
-<footer class="footer">
-  <div class="container">
-        <p3> BINGEFLIX IS AMAZING ~ JOIN THE MILLIONS THAT LOVE IT TOO !</p3>
       </div>
-    </div>
+
+    </section>
   </div>
-</footer>
+
+  <footer class="footer">
+    <div class="container">
+      <p3> BINGEFLIX IS AMAZING ~ JOIN THE MILLIONS THAT LOVE IT TOO !</p3>
+    </div>
+    </div>
+    </div>
+  </footer>
+  <script src="./routes/api.js"></script>
 </body>
+
 </html>
