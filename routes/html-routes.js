@@ -13,18 +13,18 @@ module.exports = function(app, path) {
 
     // if the user already has an account send them to the members (main) page
     console.log(req.user);
-    // if (req.user) {
-    //   res.redirect("/members");
-    // }
+    if (req.user) {
+      res.redirect("/members");
+    }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
 
 
   app.get("/login", function(req, res) {
     // if the user already has an account send them to the members (main) page
-    // if (req.user) {
-    //   res.redirect("/members");
-    // }
+    if (req.user) {
+      res.redirect("/members");
+    }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
