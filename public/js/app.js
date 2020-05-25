@@ -5,7 +5,7 @@ let userId = localStorage.getItem("user")
 let authUser = function() {
   if (!window.localStorage.getItem("user")) {
     // send login page if user doesn't exist
-    window.location.replace("./login")
+    window.location.replace("./home")
   } else {
     let path = window.location.pathname;
     renderContent(path)

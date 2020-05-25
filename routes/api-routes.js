@@ -5,7 +5,9 @@ var db = require("../models");
 var passport = require("../config/passport");
 //
 module.exports = function(app) {
-
+  app.get("/api/*", function(req,res){
+    res.sendFile("/reviews.html", { root: path.join(__dirname, "../public") })
+  })
     // using the passport.authenticate middleware with our local strategy
     // if user has valid login credentials, send them to the members page.
     // else user will be sent an error
@@ -28,7 +30,7 @@ module.exports = function(app) {
       name: req.body.name
     }).then(function(dbUser) {
       // redirect
-      res.redirect(307, "/api/login");
+      // res.redirect(307, "/api/login");
     }).catch(function(err) {
       console.log(err);
       res.json(err);

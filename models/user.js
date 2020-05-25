@@ -23,9 +23,9 @@ module.exports = function(sequelize, DataTypes) {
           len: [6]
       }
     },
-    name: {
-      type: DataTypes.STRING,
-    }
+    // name: {
+    //   type: DataTypes.STRING,
+    // }
   });
 
   // creating custom method for our User model. 

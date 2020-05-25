@@ -4,5 +4,5 @@ if (window.localStorage.getItem("user")) {
   window.location.replace("./main")
 } else {
   // or send login page if user doesn't exist
-  window.location.replace("./login")
+  window.location.replace("./home")
 }

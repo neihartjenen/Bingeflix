@@ -5,6 +5,10 @@ var path = require("path");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app, path) {
+  // app.get("/*", function(req,res){
+  //   res.sendFile("/reviews.html", { root: path.join(__dirname, "../public") })
+  // })
+
   app.get("/", function(req, res) {
 
     // if the user already has an account send them to the members (main) page
@@ -13,6 +17,7 @@ module.exports = function(app, path) {
     }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
+
 
   app.get("/login", function(req, res) {
     // if the user already has an account send them to the members (main) page
@@ -30,8 +35,8 @@ module.exports = function(app, path) {
   });
 
   // html routes to individual pages
-  app.get("/main", function(req,res) {
-    res.sendFile("/authed.html", { root: path.join(__dirname, "../public") })
+  app.get("/home", function(req,res) {
+    res.sendFile("/reviews.html", { root: path.join(__dirname, "../public") })
   })
   app.get("/myreviews", function(req,res) {
     res.sendFile("/myreviews.html", { root: path.join(__dirname, "../public") })
