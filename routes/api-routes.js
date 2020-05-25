@@ -1,4 +1,4 @@
-// used to route GET and POST from and to the database
+// used to route GET, POST, and DELETE from and to the database
 
 // require models and passport 
 var db = require("../models");
