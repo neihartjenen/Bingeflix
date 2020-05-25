@@ -1,3 +1,5 @@
+// code ref to https://dev.to/gm456742/building-a-nodejs-web-app-using-passportjs-for-authentication-3ge2
+// using email vs username which is the passport.js default
 // requiring bcrypt for password hashing. 
 var bcrypt = require("bcryptjs");
 
@@ -20,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: [6]
+          len: [8]
       }
     },
     // name: {

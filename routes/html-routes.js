@@ -12,18 +12,19 @@ module.exports = function(app, path) {
   app.get("/", function(req, res) {
 
     // if the user already has an account send them to the members (main) page
-    if (req.user) {
-      res.redirect("/members");
-    }
+    console.log(req.user);
+    // if (req.user) {
+    //   res.redirect("/members");
+    // }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
 
 
   app.get("/login", function(req, res) {
     // if the user already has an account send them to the members (main) page
-    if (req.user) {
-      res.redirect("/members");
-    }
+    // if (req.user) {
+    //   res.redirect("/members");
+    // }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
@@ -31,7 +32,7 @@ module.exports = function(app, path) {
   // if a user who is not logged in tries to access route; will be 
   // redirected to the signup page
   app.get("/members", isAuthenticated, function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
 
   // html routes to individual pages
