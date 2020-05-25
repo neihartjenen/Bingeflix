@@ -11,3 +11,25 @@ CREATE TABLE Users (
   updatedAt datetime,
   PRIMARY KEY (id)
 );
+
+CREATE TABLE shows (
+    primary_key_column datatype PRIMARY KEY,
+    shows VARCHAR(100) NOT NULL,
+    showsImage INT, 
+    showsPlot VARCHAR(250) NOT NULL,
+    showsYear INT NOT NULL 
+    PRIMARY KEY (id)
+)
+
+CREATE TABLE posts (
+     primary_key_column datatype PRIMARY KEY,
+    shows VARCHAR(100) NOT NULL,
+    showsImage 
+    showsPlot VARCHAR(250) NOT NULL,
+    showsYear INT NOT NULL 
+    PRIMARY KEY (id)
+    FOREIGN KEY shows, 
+)
+
+SELECT * FROM shows;
+select * from posts;
