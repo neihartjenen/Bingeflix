@@ -41,6 +41,7 @@ let renderContent = function(content){
       // get reviews that user is following from server
       getReviewsFollowing(userId).then(function(reviews) {
         // then render the components to display on a page
+        console.log(reviews)
         renderReviewsFollowing(reviews);
       })
       break;
@@ -88,15 +89,16 @@ let renderReviews = function(reviews) {
 
 // function to render reviews that the user is following based on data sent through reviews parameter
 let renderReviewsFollowing = function(reviews) {
+  console.log("REVIEWS", reviews)
   let content = $(".contents")
   content.empty().append($("<h4>").text("Reviews I'm Following"), $("<hr>"))
   reviews.forEach(function(review) {
     let cardbody = $("<div>").addClass("card-body")
-    let title = $("<h5>").addClass("mb-0").text(review.title)
-    let host = $("<div>").addClass("d-flex text-muted").text(`Hosted by ${review.host.name}`)
-    let description = $("<p>").addClass("card-text").text(review.description)
-    let btn = $("<button>").addClass("btn btn-dark unattend").data("id", review.id).text("Unfollow")
-    getMembers(review.id).then(function(members) {
+    let title = $("<h5>").addClass("mb-0").text(review["Review.title"])
+    let host = $("<div>").addClass("d-flex text-muted").text(`Hosted by ${review["Review.host.email"]}`)
+    let description = $("<p>").addClass("card-text").text(review["Review.description"])
+    let btn = $("<button>").addClass("btn btn-dark unattend").data("id", review["Review.id"]).text("Unfollow")
+    getMembers(review["Review.id"]).then(function(members) {
       let guests = $("<div>").addClass("ttip ml-auto").text("Following: " + members.length)
       let tooltip = $("<span>").addClass("ttiptext")
       let guestlist = $("<ul>").addClass("list-group")
@@ -159,7 +161,7 @@ let renderCreatePage = function() {
     autocomplete: "description"
   })
   let descriptionDiv = $("<div>").addClass("form-group").append(description)
-  let btn = $("<button>").addClass("form-control btn btn-dark create-event").text("Create Review")
+  let btn = $("<button>").addClass("form-control btn btn-dark create-event").attr('id', 'create-review-btn').text("Create Review")
   let form = $("<form>").append(titleDiv, descriptionDiv, btn)
   content.empty().append($("<h4>").text("Create a Review"), $("<hr>"), form)
 }
@@ -319,7 +321,8 @@ $(".logout").on("click", function(review) {
 })
 
 // create review button
-$(document).on("click", ".create-review", function(review) {
+$(document).on("click", "#create-review-btn", function(review) {
+  console.log('button clicked')
   review.preventDefault()
   let reviewTitle = $("#review-title").val().trim();
   let reviewDescription = $("#review-description").val().trim();
