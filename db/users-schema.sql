@@ -12,24 +12,20 @@ CREATE TABLE Users (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE shows (
-    primary_key_column datatype PRIMARY KEY,
-    shows VARCHAR(100) NOT NULL,
-    showsImage INT, 
-    showsPlot VARCHAR(250) NOT NULL,
-    showsYear INT NOT NULL 
-    PRIMARY KEY (id)
-)
+CREATE TABLE shows(
+id INT NOT NULL AUTO_INCREMENT,
+showsID INT NOT NULL,
+showsName VARCHAR (100) NOT NULL,
+showsPlot VARCHAR (150) NOT NULL,
+showsYear INT (4) NOT NULL,
+PRIMARY KEY (id)
+);
 
-CREATE TABLE posts (
-     primary_key_column datatype PRIMARY KEY,
-    shows VARCHAR(100) NOT NULL,
-    showsImage 
-    showsPlot VARCHAR(250) NOT NULL,
-    showsYear INT NOT NULL 
-    PRIMARY KEY (id)
-    FOREIGN KEY shows, 
-)
+CREATE TABLE posts(
+id INT NOT NULL AUTO_INCREMENT,
+postsID INT NOT NULL,
+posts VARCHAR (150) NOT NULL,
+showsID INT NOT NULL,
+PRIMARY KEY (id)
+);
 
-SELECT * FROM shows;
-select * from posts;
