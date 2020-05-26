@@ -8,7 +8,7 @@ $(document).ready(function () {
 
         var resultsDiv = $("<div>")
 
-        var title = $("<p>").text(data.Title);
+        var title = $("<h3>").text(data.Title);
         var actors = $("<p>").text(data.Actors);
         var year = $("<p>").text(data.Year);
         var plot = $("<p>").text(data.Plot);
@@ -17,9 +17,9 @@ $(document).ready(function () {
         poster.attr("src", data.Poster);
 
         p.append(title, actors, year, plot);
-
-        resultsDiv.append(p);
         resultsDiv.append(poster);
+        resultsDiv.append(p);
+      
 
         $("#searchResults").prepend(resultsDiv);
 
