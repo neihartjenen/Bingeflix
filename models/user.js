@@ -1,3 +1,5 @@
+// code ref to https://dev.to/gm456742/building-a-nodejs-web-app-using-passportjs-for-authentication-3ge2
+// using email vs username which is the passport.js default
 // requiring bcrypt for password hashing. 
 var bcrypt = require("bcryptjs");
 
@@ -17,9 +19,15 @@ module.exports = function(sequelize, DataTypes) {
 
     // password cannot be null
     password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    }
+        type: DataTypes.STRING,
+        allowNull: false,
+      //   validate: {
+      //     len: [8]
+      // }
+    },
+    // name: {
+    //   type: DataTypes.STRING,
+    // }
   });
 
   // creating custom method for our User model. 
@@ -44,5 +52,15 @@ module.exports = function(sequelize, DataTypes) {
        null
      );
    });
+
+  // associating Users table to Reviews
+  User.associate = function(models){
+    // Each User can have many Reviews
+    models.User.hasMany(models.Review, {
+      // this deletes all associated Reviews a User is deleted
+      onDelete: "cascade"
+    })
+  }
+
    return User;
 };
