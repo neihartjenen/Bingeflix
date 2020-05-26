@@ -64,7 +64,7 @@ let renderReviews = function(reviews) {
   reviews.forEach(function(review) {
     let cardbody = $("<div>").addClass("card-body")
     let title = $("<h5>").addClass("mb-0").text(review.title)
-    let host = $("<div>").addClass("d-flex text-muted").text(`Hosted by ${review.host.name}`)
+    let host = $("<div>").addClass("d-flex text-muted").text(`Posted by ${review.host.email}`)
     let description = $("<p>").addClass("card-text").text(review.description)
     let btn = $("<button>").addClass("btn btn-dark attend").data("id", review.id).text("Following")
 
@@ -95,7 +95,7 @@ let renderReviewsFollowing = function(reviews) {
   reviews.forEach(function(review) {
     let cardbody = $("<div>").addClass("card-body")
     let title = $("<h5>").addClass("mb-0").text(review["Review.title"])
-    let host = $("<div>").addClass("d-flex text-muted").text(`Hosted by ${review["Review.host.email"]}`)
+    let host = $("<div>").addClass("d-flex text-muted").text(`Posted by ${review["Review.host.email"]}`)
     let description = $("<p>").addClass("card-text").text(review["Review.description"])
     let btn = $("<button>").addClass("btn btn-dark unattend").data("id", review["Review.id"]).text("Unfollow")
     getMembers(review["Review.id"]).then(function(members) {
