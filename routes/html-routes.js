@@ -31,8 +31,8 @@ module.exports = function(app) {
   });
 
   // html routes to individual pages
-  app.get("/reviews", function(req,res) {
-    res.sendFile("/reviews.html", { root: path.join(__dirname, "../public") })
+  app.get("/tvreviews", function(req,res) {
+    res.sendFile("/tvreviews.html", { root: path.join(__dirname, "../public") })
   })
   app.get("/myreviews", function(req,res) {
     res.sendFile("/myreviews.html", { root: path.join(__dirname, "../public") })
