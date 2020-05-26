@@ -10,6 +10,7 @@ CREATE TABLE users (
   updatedAt datetime,
   PRIMARY KEY (id)
 );
+
 CREATE TABLE shows(
 id INT NOT NULL AUTO_INCREMENT,
 showsID INT NOT NULL,
@@ -18,6 +19,7 @@ showsPlot VARCHAR (150) NOT NULL,
 showsYear INT (4) NOT NULL,
 PRIMARY KEY (id)
 );
+
 CREATE TABLE posts(
 id INT NOT NULL AUTO_INCREMENT,
 postsID INT NOT NULL,
