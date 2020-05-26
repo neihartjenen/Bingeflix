@@ -8,6 +8,7 @@ module.exports = function(app) {
   app.get("/signup", function(req, res) {
 
     // if the user already has an account send them to the members page
+    // console.log(req.user);
     if (req.user) {
       res.redirect("/members");
     }
@@ -28,4 +29,25 @@ module.exports = function(app) {
   app.get("/members", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
+
+  // html routes to individual pages
+  app.get("/reviews", function(req,res) {
+    res.sendFile("/reviews.html", { root: path.join(__dirname, "../public") })
+  })
+  app.get("/myreviews", function(req,res) {
+    res.sendFile("/myreviews.html", { root: path.join(__dirname, "../public") })
+  })
+  app.get("/following", function(req,res) {
+    res.sendFile("/following.html", { root: path.join(__dirname, "../public") })
+  })
+  app.get("/create", function(req,res) {
+    res.sendFile("/create.html", { root: path.join(__dirname, "../public") })
+  })
+  app.get("/profile", function(req,res) {
+    res.sendFile("/profile.html", { root: path.join(__dirname, "../public") })
+  })
+  // send default page to all routes that are undefined
+  app.get("*", function(req,res) {
+    res.sendFile("/index.html", { root: path.join(__dirname, "../public") })
+  })
 };
