@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "x5y6eLST$",
-    "database": "bingeflix_db",
+    "database": "reviews_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
    
@@ -10,7 +10,7 @@
   "test": {
     "username": "root",
     "password": "x5y6eLST$",
-    "database": "bingeflix_db",
+    "database": "reviews_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
@@ -18,7 +18,7 @@
   "production": {
     "username": "root",
     "password": "x5y6eLST$",
-    "database": "bingeflix_db",
+    "database": "reviews_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
