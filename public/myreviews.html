@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>TV Reviews</title>
+    <title>BingeFlix</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -17,34 +18,41 @@
 
   <body>
     <div class="container">
+
       <div class="jumbotron text-center mt-3">
-        <h1 class="display-2">TV Reviews</h1>
+        <img src="/images/white-logo.png" id="logo" alt="bingeflix-logo">
+        <br><br>
+        <h5>Welcome <span class="member-name"></span></h5>
         <p class="lead">Tell us what you think!</p>
         <hr />
+  
         <ul class="nav">
+  
           <li class="nav-item ml-auto">
-            <button class="nav-link btn logout">
+            <a class="nav-link" href="./logout">
               Logout
-            </button>
+            </a>
           </li>
+  
           <li class="nav-item">
             <a class="nav-link" href="./profile">
               Profile
             </a>
           </li>
         </ul>
+  
         <hr />
         <div class="row">
           <div class="col-md-3 sidenav text-left">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link" href="./main">View TV Reviews</a>
+                <a class="nav-link" href="./reviews">View TV Reviews</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="./myreviews">My TV Reviews</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./attending">Favorite TV Reviews</a>
+                <a class="nav-link" href="./following">Favorite TV Reviews</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="./create">Create TV Reviews</a>

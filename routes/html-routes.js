@@ -4,10 +4,11 @@ var path = require("path");
 // requirie middleware for checking if user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
-module.exports = function(app, path) {
-  app.get("/", function(req, res) {
+module.exports = function(app) {
+  app.get("/signup", function(req, res) {
 
-    // if the user already has an account send them to the members (main) page
+    // if the user already has an account send them to the members page
+    // console.log(req.user);
     if (req.user) {
       res.redirect("/members");
     }
@@ -15,7 +16,7 @@ module.exports = function(app, path) {
   });
 
   app.get("/login", function(req, res) {
-    // if the user already has an account send them to the members (main) page
+    // if the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/members");
     }
@@ -30,8 +31,8 @@ module.exports = function(app, path) {
   });
 
   // html routes to individual pages
-  app.get("/main", function(req,res) {
-    res.sendFile("/authed.html", { root: path.join(__dirname, "../public") })
+  app.get("/reviews", function(req,res) {
+    res.sendFile("/reviews.html", { root: path.join(__dirname, "../public") })
   })
   app.get("/myreviews", function(req,res) {
     res.sendFile("/myreviews.html", { root: path.join(__dirname, "../public") })
@@ -49,5 +50,4 @@ module.exports = function(app, path) {
   app.get("*", function(req,res) {
     res.sendFile("/index.html", { root: path.join(__dirname, "../public") })
   })
-  
 };
