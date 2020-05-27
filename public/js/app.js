@@ -137,7 +137,7 @@ let renderMyReviews = function(reviews) {
     }).val(review.description)
     let descriptionDiv = $("<div>").addClass("form-group").append($("<label>").text("Review Description"), description)
 
-    let btn = $("<button>").addClass("mr-3 btn btn-dark update-event").data("id", review.id).text("Update")
+    let btn = $("<button>").addClass("mr-3 btn btn-dark update-event").attr('id', 'update-btn').data("id", review.id).text("Update")
     let btn2 = $("<button>").addClass("btn btn-dark delete").data("id", review.id).text("Delete")
     let form = $("<form>").append(titleDiv, descriptionDiv, btn, btn2)
     card.append(form)
@@ -413,7 +413,9 @@ $(document).on("click", "button.unfollow", function(review) {
 })
 
 // update button in my reviews component
-$(document).on("click", "button.update-review", function(review) {
+// $(document).on("click", "button.update-review", function(review) {
+$(document).on("click", "#update-btn", function(review) {
+  console.log('OVER HERE!!!!!!')
   review.preventDefault();
   let btn = review.target;
   let reviewId = $(btn).data("id");
@@ -422,6 +424,6 @@ $(document).on("click", "button.update-review", function(review) {
     description: $(`#review${reviewId}-description`).val().trim(),
   }
   updateReview(reviewId, data).then(function() {
-    window.location.replace("./tvreviews")
+    window.location.replace("./myreviews")
   })
 })
