@@ -1,6 +1,6 @@
 *{margin: 0; padding:0}
 body{
-    background-image: url("../images/6243.jpg");   
+    background-image: url("/public/assets/images/6243.jpg");   
     }
 .container {
     width:550px;
