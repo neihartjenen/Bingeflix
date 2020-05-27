@@ -113,5 +113,10 @@ input[type=text]:focus {
     width: 100%;
   }
 
+  form.signup,
+form.login {
+  margin-top: 50px;
+}
+
  
  

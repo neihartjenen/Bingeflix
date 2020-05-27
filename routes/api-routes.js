@@ -1,4 +1,4 @@
-// used to route GET and POST from and to the database
+// used to route GET, POST and DELETE to and from the database
 
 // require models and passport 
 var db = require("../models");
@@ -24,8 +24,7 @@ module.exports = function(app) {
     console.log(db.User)
     db.User.create({
       email: req.body.email,
-      password: req.body.password,
-      name: req.body.name
+      password: req.body.password
     }).then(function(dbUser) {
       // redirect
       res.redirect(307, "/api/login");
@@ -66,14 +65,12 @@ module.exports = function(app) {
       // send back the user's email and id
       res.json({
         email: req.user.email,
-        id: req.user.id,
-        name: req.user.name
+        id: req.user.id
       });
     }
   });
 
-
-  // route used to update information for a specific user
+// route used to update information for a specific user
   app.put("/api/user/:id", function(req,res){
     // update a row in User table where id matches req.params.id with new values from req.body
     db.User.update(req.body, {
@@ -95,7 +92,7 @@ module.exports = function(app) {
     db.Review.findAll({
       where: {
         hostId: req.params.id
-      }
+      },
     }).then(function(reviews) {
       res.json(reviews)
     }).catch(function(err) {
@@ -118,17 +115,21 @@ module.exports = function(app) {
         include: {
           model: db.User,
           as: "host",
-          attributes: ["name"]
+          attributes: ["email"]
         }
-      }
+      },
+      raw:true //receives data in query
     }).then(function(users) {
+      console.log(users)
+      console.log("HERE!!!")
       // create a new array
-      let data = [];
-      // push all review information into data to omit unneeded data
-      users.forEach(function(user) {
-        data.push(user.Review)
-      })
-      res.json(data);
+      // let data = [];
+      // // push all review information into data to omit unneeded data
+      // users.forEach(function(user) {
+      //   console.log(user.Review)
+      //   data.push(user.Review)
+      // })
+      res.json(users);
     }).catch(function(err) {
       console.log(err);
       res.send(false);
@@ -144,7 +145,7 @@ module.exports = function(app) {
         {
           model: db.User,
           as: "host",
-          attributes: ["name"]
+          attributes: ["email"]
         }
       ],
     }).then(function(reviews) {
@@ -158,6 +159,7 @@ module.exports = function(app) {
   // route used to create a new review
   app.post("/api/review", function(req,res){
     // create a new review with columns and values specified in req.body
+    console.log('this is working!', req.body)
     db.Review.create(req.body)
       .then(function(reviewData) {
         db.UserReview.create({
@@ -209,7 +211,7 @@ module.exports = function(app) {
       // join User table to get the user name
       include: {
         model: db.User,
-        attributes: ["name"]
+        attributes: ["email"]
       }
     }).then(function(members){
       res.json(members)

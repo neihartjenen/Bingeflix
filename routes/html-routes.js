@@ -4,10 +4,11 @@ var path = require("path");
 // requirie middleware for checking if user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
-module.exports = function(app, path) {
-  app.get("/", function(req, res) {
+module.exports = function(app) {
+  app.get("/signup", function(req, res) {
 
     // if the user already has an account send them to the members page
+    // console.log(req.user);
     if (req.user) {
       res.redirect("/members");
     }
@@ -30,24 +31,23 @@ module.exports = function(app, path) {
   });
 
   // html routes to individual pages
-  app.get("/main", function(req,res) {
-    res.sendFile("/views/authed.html", { root: path.join(__dirname, "../public") })
+  app.get("/tvreviews", function(req,res) {
+    res.sendFile("/tvreviews.html", { root: path.join(__dirname, "../public") })
   })
   app.get("/myreviews", function(req,res) {
-    res.sendFile("/views/myreviews.html", { root: path.join(__dirname, "../public") })
+    res.sendFile("/myreviews.html", { root: path.join(__dirname, "../public") })
   })
   app.get("/following", function(req,res) {
-    res.sendFile("/views/following.html", { root: path.join(__dirname, "../public") })
+    res.sendFile("/following.html", { root: path.join(__dirname, "../public") })
   })
   app.get("/create", function(req,res) {
-    res.sendFile("/views/create.html", { root: path.join(__dirname, "../public") })
+    res.sendFile("/create.html", { root: path.join(__dirname, "../public") })
   })
   app.get("/profile", function(req,res) {
-    res.sendFile("/views/profile.html", { root: path.join(__dirname, "../public") })
+    res.sendFile("/profile.html", { root: path.join(__dirname, "../public") })
   })
   // send default page to all routes that are undefined
   app.get("*", function(req,res) {
-    res.sendFile("/views/index.html", { root: path.join(__dirname, "../public") })
+    res.sendFile("/index.html", { root: path.join(__dirname, "../public") })
   })
-  
 };

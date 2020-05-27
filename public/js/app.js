@@ -5,7 +5,7 @@ let userId = localStorage.getItem("user")
 let authUser = function() {
   if (!window.localStorage.getItem("user")) {
     // send login page if user doesn't exist
-    window.location.replace("./login")
+    window.location.replace("./home")
   } else {
     let path = window.location.pathname;
     renderContent(path)
@@ -26,53 +26,55 @@ let isObjEmpty = function(obj) {
 // in this case, content = window.location.pathname
 let renderContent = function(content){
   switch (content) {
-    case "/myevents":
-      // get events made by user from server
-      getEventsByUserId(userId).then(function(events) {
+    case "/myreviews":
+      // get reviews made by user from server
+      getReviewsByUserId(userId).then(function(reviews) {
         // then render the components to display on page
-        renderMyEvents(events);
+        renderMyReviews(reviews);
       })
       break;
     case "/create":
-      // render create event components to display on page
+      // render create review components to display on page
       renderCreatePage();
       break;
-    case "/attending":
-      // get events that user is attending from server
-      getEventsAttending(userId).then(function(events) {
+    case "/following":
+      // get reviews that user is following from server
+      getReviewsFollowing(userId).then(function(reviews) {
         // then render the components to display on a page
-        renderEventsAttending(events);
+        console.log(reviews)
+        renderReviewsFollowing(reviews);
       })
       break;
     case "/profile":
       renderProfilePage();
       break;
     default:
-      // get all events from server
-      getEventInfo().then(function(events) {
+      // get all reviews from server
+      getReviewInfo().then(function(reviews) {
         // then render the components to display on a page
-        renderEvents(events);
+        renderReviews(reviews);
       })
   }
 }
 
-// function to render display components based on data sent through events parameter
-let renderEvents = function(events) {
+// function to render display components based on data sent through reviews parameter
+let renderReviews = function(reviews) {
   let content = $(".contents")
-  content.empty().append($("<h4>").text("Events List"), $("<hr>"))
-  events.forEach(function(event) {
+  content.empty().append($("<h4>").text("Reviews List"), $("<hr>"))
+  reviews.forEach(function(review) {
     let cardbody = $("<div>").addClass("card-body")
-    let title = $("<h5>").addClass("mb-0").text(event.title)
-    let host = $("<div>").addClass("d-flex text-muted").text(`Hosted by ${event.host.name}`)
-    let description = $("<p>").addClass("card-text").text(event.description)
-    let btn = $("<button>").addClass("btn btn-dark attend").data("id", event.id).text("Attend")
-    // get all attendee information for specific event from the server
-    getAttendees(event.id).then(function(attendees) {
-      let guests = $("<div>").addClass("ttip ml-auto").text("Guests: " + attendees.length)
+    let title = $("<h5>").addClass("mb-0").text(review.title)
+    let host = $("<div>").addClass("d-flex text-muted").text(`Posted by ${review.host.email}`)
+    let description = $("<p>").addClass("card-text").text(review.description)
+    let btn = $("<button>").addClass("btn btn-dark attend").data("id", review.id).text("Following")
+
+    // get all member information for specific review from the server
+    getMembers(review.id).then(function(members) {
+      let guests = $("<div>").addClass("ttip ml-auto").text("Following: " + members.length)
       let tooltip = $("<span>").addClass("ttiptext")
       let guestlist = $("<ul>").addClass("list-group")
-      attendees.forEach(function(attendee) {
-        let li = $("<li>").addClass("list-group-item text-dark").text(attendee.User.name)
+      members.forEach(function(member) {
+        let li = $("<li>").addClass("list-group-item text-dark").text(member.User.name)
         guestlist.append(li)
       })
       tooltip.append(guestlist)
@@ -85,22 +87,23 @@ let renderEvents = function(events) {
   })
 }
 
-// function to render events that the user is attending based on data sent through events parameter
-let renderEventsAttending = function(events) {
+// function to render reviews that the user is following based on data sent through reviews parameter
+let renderReviewsFollowing = function(reviews) {
+  console.log("REVIEWS", reviews)
   let content = $(".contents")
-  content.empty().append($("<h4>").text("Events I'm Attending"), $("<hr>"))
-  events.forEach(function(event) {
+  content.empty().append($("<h4>").text("Reviews I'm Following"), $("<hr>"))
+  reviews.forEach(function(review) {
     let cardbody = $("<div>").addClass("card-body")
-    let title = $("<h5>").addClass("mb-0").text(event.title)
-    let host = $("<div>").addClass("d-flex text-muted").text(`Hosted by ${event.host.name}`)
-    let description = $("<p>").addClass("card-text").text(event.description)
-    let btn = $("<button>").addClass("btn btn-dark unattend").data("id", event.id).text("Unattend")
-    getAttendees(event.id).then(function(attendees) {
-      let guests = $("<div>").addClass("ttip ml-auto").text("Guests: " + attendees.length)
+    let title = $("<h5>").addClass("mb-0").text(review["Review.title"])
+    let host = $("<div>").addClass("d-flex text-muted").text(`Posted by ${review["Review.host.email"]}`)
+    let description = $("<p>").addClass("card-text").text(review["Review.description"])
+    let btn = $("<button>").addClass("btn btn-dark unattend").data("id", review["Review.id"]).text("Unfollow")
+    getMembers(review["Review.id"]).then(function(members) {
+      let guests = $("<div>").addClass("ttip ml-auto").text("Following: " + members.length)
       let tooltip = $("<span>").addClass("ttiptext")
       let guestlist = $("<ul>").addClass("list-group")
-      attendees.forEach(function(attendee) {
-        let li = $("<li>").addClass("list-group-item text-dark").text(attendee.User.name)
+      members.forEach(function(member) {
+        let li = $("<li>").addClass("list-group-item text-dark").text(member.User.name)
         guestlist.append(li)
       })
       tooltip.append(guestlist)
@@ -113,63 +116,63 @@ let renderEventsAttending = function(events) {
   })
 }
 
-// function to render events that the user has created
-let renderMyEvents = function(events) {
+// function to render reviews that the user has created
+let renderMyReviews = function(reviews) {
   let content = $(".contents")
-  content.empty().append($("<h4>").text("Events I'm Hosting"), $("<hr>"))
-  events.forEach(function(event) {
+  content.empty().append($("<h4>").text("Reviews I've Created"), $("<hr>"))
+  reviews.forEach(function(review) {
     let card = $("<div>").addClass("card p-3 mb-3")
     let title = $("<input>").addClass("form-control").attr({
-      id: `event${event.id}-title`,
-      value: event.title,
-      placeholder: "Event Title",
+      id: `review${review.id}-title`,
+      value: review.title,
+      placeholder: "Review Title",
       autocomplete: "title"
     })
-    let titleDiv = $("<div>").addClass("form-group").append($("<label>").text("Event Title"), title);
+    let titleDiv = $("<div>").addClass("form-group").append($("<label>").text("Review Title"), title);
     let description = $("<textarea>").addClass("form-control").attr({
-      id: `event${event.id}-description`,
-      placeholder: "Event Description",
+      id: `review${review.id}-description`,
+      placeholder: "Review Description",
       rows: 3,
       autocomplete: "description"
-    }).val(event.description)
-    let descriptionDiv = $("<div>").addClass("form-group").append($("<label>").text("Event Description"), description)
+    }).val(review.description)
+    let descriptionDiv = $("<div>").addClass("form-group").append($("<label>").text("Review Description"), description)
 
-    let btn = $("<button>").addClass("mr-3 btn btn-dark update-event").data("id", event.id).text("Update")
-    let btn2 = $("<button>").addClass("btn btn-dark delete").data("id", event.id).text("Delete")
+    let btn = $("<button>").addClass("mr-3 btn btn-dark update-event").attr('id', 'update-btn').data("id", review.id).text("Update")
+    let btn2 = $("<button>").addClass("btn btn-dark delete").data("id", review.id).text("Delete")
     let form = $("<form>").append(titleDiv, descriptionDiv, btn, btn2)
     card.append(form)
     content.append(card)
   })
 }
 
-// function to render components for the create event display
+// function to render components for the create review display
 let renderCreatePage = function() {
   let content = $(".contents")
   let title = $("<input>").addClass("form-control").attr({
-    id: "event-title",
-    placeholder: "Event Title",
+    id: "review-title",
+    placeholder: "Review Title",
     autocomplete: "title"
   })
   let titleDiv = $("<div>").addClass("form-group").append(title);
   let description = $("<textarea>").addClass("form-control").attr({
-    id: "event-description",
-    placeholder: "Event Description",
+    id: "review-description",
+    placeholder: "Review Description",
     rows: 5,
     autocomplete: "description"
   })
   let descriptionDiv = $("<div>").addClass("form-group").append(description)
-  let btn = $("<button>").addClass("form-control btn btn-dark create-event").text("Create Event")
+  let btn = $("<button>").addClass("form-control btn btn-dark create-event").attr('id', 'create-review-btn').text("Create Review")
   let form = $("<form>").append(titleDiv, descriptionDiv, btn)
-  content.empty().append($("<h4>").text("Create an Event"), $("<hr>"), form)
+  content.empty().append($("<h4>").text("Create a Review"), $("<hr>"), form)
 }
 
 // function to render components for the side nav display
 let renderSideNav = function() {
   let sideNav = $(".sidenav");
-  let btn1 = $("<button>").addClass("nav-link btn events").text("View Events")
-  let btn2 = $("<button>").addClass("nav-link btn myevents").text("My Events")
-  let btn3 = $("<button>").addClass("nav-link btn attending").text("Attending")
-  let btn4 = $("<button>").addClass("nav-link btn create").text("Create Event")
+  let btn1 = $("<button>").addClass("nav-link btn events").text("View Reviews")
+  let btn2 = $("<button>").addClass("nav-link btn myevents").text("My Reviews")
+  let btn3 = $("<button>").addClass("nav-link btn attending").text("Following")
+  let btn4 = $("<button>").addClass("nav-link btn create").text("Create Review")
   let li1 = $("<li>").addClass("nav-item").append(btn1)
   let li2 = $("<li>").addClass("nav-item").append(btn2)
   let li3 = $("<li>").addClass("nav-item").append(btn3)
@@ -223,62 +226,62 @@ let renderProfilePage = function() {
 }
 
 // API CALLS
-let getEventInfo = function() {
+let getReviewInfo = function() {
   return $.ajax({
-    url: "/api/event",
+    url: "/api/review",
     type: "GET"
   })
 }
 
-let getEventsByUserId = function(id) {
+let getReviewsByUserId = function(id) {
   return $.ajax({
-    url: "/api/user/" + id + "/events",
+    url: "/api/user/" + id + "/reviews",
     type: "GET"
   })
 }
 
-let getEventsAttending = function(id) {
+let getReviewsFollowing = function(id) {
   return $.ajax({
-    url: "/api/user/" + id + "/attending",
+    url: "/api/user/" + id + "/following",
     type: "GET"
   })
 }
 
-let createEvent = function(data) {
+let createReview = function(data) {
   return $.ajax({
-    url: "/api/event",
+    url: "/api/review",
     type: "POST",
     data: data
   })
 }
 
-let attendEvent = function(data) {
+let followReview = function(data) {
   return $.ajax({
-    url: "/api/attend/",
+    url: "/api/follow/",
     type: "POST",
     data: data
   })
 }
 
-let unattendEvent = function(data) {
+let unfollowReview = function(data) {
   return $.ajax({
-    url: "/api/attend/",
+    url: "/api/follow/",
     type: "DELETE",
     data: data
   })
 }
 
-let updateEvent = function(id, data){
+let updateReview = function(id, data){
   return $.ajax({
-    url: "/api/event/" + id,
+    url: "/api/review/" + id,
     type: "PUT",
     data: data
   })
 }
 
-let deleteEvent = function(id) {
+let deleteReview = function(id) {
   return $.ajax({
-    url: "/api/event/" + id,
+    url: "/api/review/" + id,
     type: "DELETE"
   })
 }
@@ -298,9 +301,9 @@ let saveUserInfo = function(data) {
   })
 }
 
-let getAttendees = function(eventId) {
+let getMembers = function(reviewId) {
   return $.ajax({
-    url: "/api/event/" + eventId + "/attendees",
+    url: "/api/review/" + reviewId + "/members",
     type: "GET"
   })
 }
@@ -311,36 +314,37 @@ $(document).on("ready", authUser())
 
 // -- Nav Links
 // logout link
-$(".logout").on("click", function(event) {
-  event.preventDefault();
+$(".logout").on("click", function(review) {
+  review.preventDefault();
   window.localStorage.removeItem("user");
   window.location.reload();
 })
 
-// create event button
-$(document).on("click", ".create-event", function(event) {
-  event.preventDefault()
-  let eventTitle = $("#event-title").val().trim();
-  let eventDescription = $("#event-description").val().trim();
-  if (eventTitle.length < 1) {
-    $("#event-title").focus();
-  } else if (eventDescription.length < 1) {
-    $("#event-description").focus();
+// create review button
+$(document).on("click", "#create-review-btn", function(review) {
+  console.log('button clicked')
+  review.preventDefault()
+  let reviewTitle = $("#review-title").val().trim();
+  let reviewDescription = $("#review-description").val().trim();
+  if (reviewTitle.length < 1) {
+    $("#review-title").focus();
+  } else if (reviewDescription.length < 1) {
+    $("#review-description").focus();
   } else {
     let data = {
-      title: eventTitle,
-      description: eventDescription,
+      title: reviewTitle,
+      description: reviewDescription,
       hostId: userId
     }
-    createEvent(data).then(function() {
-      window.location.replace("./myevents")
+    createReview(data).then(function() {
+      window.location.replace("./myreviews")
     })
   }
 })
 
 // update button in profile component
-$(document).on("click", ".update-user", function(event) {
-  event.preventDefault();
+$(document).on("click", ".update-user", function(review) {
+  review.preventDefault();
   let password = $("#password").val().trim();
   let pwconfirm = $("#pwconfirm").val().trim();
   let name = $("#name").val().trim();
@@ -365,59 +369,61 @@ $(document).on("click", ".update-user", function(event) {
   }
 })
 
-// attend button in view events component
-$(document).on("click", "button.attend", function(event) {
-  event.preventDefault();
+// follow button in view reviews component
+$(document).on("click", "button.follow", function(review) {
+  review.preventDefault();
   // let btn = this button since this = document
-  let btn = event.target;
-  let eventId = $(btn).data("id");
+  let btn = review.target;
+  let reviewId = $(btn).data("id");
   let data = {
     UserId: userId,
-    EventId: eventId
+    ReviewId: reviewId
   }
-  attendEvent(data).then(function(attend){
-    if (attend) {
-      window.location.replace("./attending")
+  attendReview(data).then(function(follow){
+    if (follow) {
+      window.location.replace("./following")
     } else {
-      alert("You're already attending this event!")
+      alert("You're already following this review!")
     }
   })
 })
 
-// delete button in my events component
-$(document).on("click", "button.delete", function(event) {
-  event.preventDefault();
-  let btn = event.target;
-  let eventId = $(btn).data("id");
-  deleteEvent(eventId).then(function() {
-    window.location.replace("./myevents")
+// delete button in my reviews component
+$(document).on("click", "button.delete", function(review) {
+  review.preventDefault();
+  let btn = review.target;
+  let reviewId = $(btn).data("id");
+  deleteReview(reviewId).then(function() {
+    window.location.replace("./myreviews")
   })
 })
 
-// unattend button in attending component
-$(document).on("click", "button.unattend", function(event) {
-  event.preventDefault();
-  let btn = event.target;
-  let eventId = $(btn).data("id");
+// unfollow button in following component
+$(document).on("click", "button.unfollow", function(review) {
+  review.preventDefault();
+  let btn = review.target;
+  let reviewId = $(btn).data("id");
   let data = {
     UserId: userId,
-    EventId: eventId,
+    ReviewId: reviewId,
   }
-  unattendEvent(data).then(function() {
-    window.location.replace("./attending")
+  unfollowReview(data).then(function() {
+    window.location.replace("./following")
   })
 })
 
-// update button in my events component
-$(document).on("click", "button.update-event", function(event) {
-  event.preventDefault();
-  let btn = event.target;
-  let eventId = $(btn).data("id");
+// update button in my reviews component
+// $(document).on("click", "button.update-review", function(review) {
+$(document).on("click", "#update-btn", function(review) {
+  console.log('OVER HERE!!!!!!')
+  review.preventDefault();
+  let btn = review.target;
+  let reviewId = $(btn).data("id");
   let data = {
-    title: $(`#event${eventId}-title`).val().trim(),
-    description: $(`#event${eventId}-description`).val().trim(),
+    title: $(`#review${reviewId}-title`).val().trim(),
+    description: $(`#review${reviewId}-description`).val().trim(),
   }
-  updateEvent(eventId, data).then(function() {
-    window.location.replace("./main")
+  updateReview(reviewId, data).then(function() {
+    window.location.replace("./myreviews")
   })
 })
