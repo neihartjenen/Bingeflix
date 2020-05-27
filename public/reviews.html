@@ -28,6 +28,11 @@
 
   </nav>
 
+  <div class="uk-animation-toggle" tabindex="0">
+    <div class="uk-card uk-card-default uk-card-body uk-animation-scale-up">
+        <p class="uk-text-center">THE REVIEWS ARE IN </p>
+    </div>
+
   <hr />
 <div class="container">
   <form class="uk-form-horizontal uk-margin-large">
@@ -43,7 +48,7 @@
 
     </div>
 
-    <div class="uk-margin">
+    <!-- <div class="uk-margin">
       <label class="uk-form-label" for="form-horizontal-select">Top 10 Options</label>
       <div class="uk-form-controls">
         <select class="uk-select" id="form-horizontal-select">
@@ -51,7 +56,7 @@
           <option>Option 02</option>
         </select>
       </div>
-    </div>
+    </div> -->
 
   </form>
   <hr />
@@ -63,7 +68,26 @@
         </div>
 
   <br>
- 
+  <form>
+    <fieldset class="uk-fieldset">
+
+        <h3>Make Your Review Here</h3>
+
+        <div class="uk-margin">
+            <input class="uk-form-input" type="text" placeholder="Username">
+        </div>
+
+        <div class="uk-margin">
+            <textarea class="uk-form-textarea" rows="5" placeholder="Review Here"></textarea>
+      </div>
+
+    </fieldset>
+</form>
+<button class="uk-button uk-button-secondary uk-button-small">SUBMIT</button>
+<div class="uk-margin">
+  <input class="uk-range" type="range" value="2" min="0" max="10" step="0.1">
+</div>
+<br>
 
   <div class="container">
     <div class="box">
@@ -97,11 +121,6 @@
       <span>Blacklist</span>
     </div>
   </div>
-
-  <div class="uk-animation-toggle" tabindex="0">
-    <div class="uk-card uk-card-default uk-card-body uk-animation-scale-up">
-        <p class="uk-text-center">Scale Up</p>
-    </div>
 
   </secion>
   <script src="../routes/omdb-api.js"></script>

@@ -7,7 +7,7 @@ body {
     margin-bottom: 100px;
     margin-right: 150px;
     margin-left: 80px;
-    background-color: rgb(193, 175, 230);
+    background-image: url("../images/clipart-wave-abstract-3.jpg");
     background-repeat: repeat-x;
     font-size:25px;
 }
@@ -31,7 +31,7 @@ nav ul {
 
 nav li {
     display: inline-block;
-    margin-left: 250px;
+    margin-left: 460px;
     padding-top: 30px;
     position: relative;
 }
@@ -122,13 +122,18 @@ input[type=text]:focus {
     box-sizing: border-box;
     height: 100%;
   }
+
   .container p{
       font-size: 1.8rem;
   }
+
  #searchResults img{
     margin: 0px 10px;
     float: left;
   }
+
+
+  
   .box {
     flex: 1;
     overflow: hidden;
@@ -160,3 +165,29 @@ input[type=text]:focus {
   
     font-size: 1.5rem;
 }
+
+.uk-form-input{
+    font-size: 1.5rem;
+    margin-left: 150px; 
+  }
+  
+  .uk-form-textarea {
+    font-size: 1.5rem;
+    margin-left: 150px; 
+    float: left;
+  }
+  
+  h3 {
+    margin-left: 150px;
+    font-size: 40px;
+    font-family: Comic Sans MS;
+  }
+
+  .uk-text-center {
+    font-size: 70px;
+}
+
+.uk-button-secondary {
+    margin-left: 150px;
+   margin-top: 10px;
+ }

@@ -30,7 +30,7 @@ nav ul {
 
 nav li {
     display: inline-block;
-    margin-left: 250px;
+    margin-left: 365px;
     padding-top: 30px;
     position: relative;
 }
@@ -39,12 +39,12 @@ nav a {
     color: #644E90;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 20px;
+    font-size:30px;
     
 }
 
 nav a:hover {
-    color: black
+    color: black;
 }
 
 nav a::before {
@@ -72,8 +72,8 @@ p4 {
 }
 
 .rounded-circle {
-    width: 150px;
-  height: 150px;
+    width: 250px;
+  height: 250px;
   border-radius: 50%;
   position: relative;
   overflow: hidden;
@@ -110,8 +110,23 @@ input [type=text] {
 }
 
 input[type=text]:focus {
-    width: 100%;
+    width: 150%;
   }
+
+.uk-text-center {
+    font-size: 160px;
+    font-family: Comic Sans MS;
+}
+
+p{
+    font-size: 35px;
+}
+
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+
 
  
  
