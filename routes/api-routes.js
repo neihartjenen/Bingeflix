@@ -258,4 +258,9 @@ module.exports = function(app) {
     })
   })
 
+  //added to search for shows - Dylan
+  app.get("/api/shows", function (req,res){
+    res.json([])
+  })
+
 };

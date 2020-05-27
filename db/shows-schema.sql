@@ -1,9 +1,8 @@
 DROP DATABASE IF EXISTS bingeflix_db;
 CREATE DATABASE bingeflix_db;
-
 USE bingeflix_db;
 
-CREATE TABLE Users (
+CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT,
   email VARCHAR(100) NOT NULL,
   password VARCHAR(100) NOT NULL,
@@ -25,6 +24,5 @@ CREATE TABLE posts(
 id INT NOT NULL AUTO_INCREMENT,
 postsID INT NOT NULL,
 posts VARCHAR (150) NOT NULL,
-showsID INT NOT NULL,
 PRIMARY KEY (id)
 );
