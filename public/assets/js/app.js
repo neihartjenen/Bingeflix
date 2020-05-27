@@ -64,7 +64,7 @@ let renderReviews = function(reviews) {
   reviews.forEach(function(review) {
     let cardbody = $("<div>").addClass("card-body")
     let title = $("<h5>").addClass("mb-0").text(review.title)
-    let host = $("<div>").addClass("d-flex text-muted").text(`Hosted by ${review.host.name}`)
+    let host = $("<div>").addClass("d-flex text-muted").text(`Posted by ${review.host.email}`)
     let description = $("<p>").addClass("card-text").text(review.description)
     let btn = $("<button>").addClass("btn btn-dark attend").data("id", review.id).text("Following")
 
@@ -74,7 +74,7 @@ let renderReviews = function(reviews) {
       let tooltip = $("<span>").addClass("ttiptext")
       let guestlist = $("<ul>").addClass("list-group")
       members.forEach(function(member) {
-        let li = $("<li>").addClass("list-group-item text-dark").text(member.User.name)
+        let li = $("<li>").addClass("list-group-item text-dark").text(member.User.email)
         guestlist.append(li)
       })
       tooltip.append(guestlist)
@@ -95,7 +95,7 @@ let renderReviewsFollowing = function(reviews) {
   reviews.forEach(function(review) {
     let cardbody = $("<div>").addClass("card-body")
     let title = $("<h5>").addClass("mb-0").text(review["Review.title"])
-    let host = $("<div>").addClass("d-flex text-muted").text(`Hosted by ${review["Review.host.email"]}`)
+    let host = $("<div>").addClass("d-flex text-muted").text(`Posted by ${review["Review.host.email"]}`)
     let description = $("<p>").addClass("card-text").text(review["Review.description"])
     let btn = $("<button>").addClass("btn btn-dark unattend").data("id", review["Review.id"]).text("Unfollow")
     getMembers(review["Review.id"]).then(function(members) {
@@ -103,7 +103,7 @@ let renderReviewsFollowing = function(reviews) {
       let tooltip = $("<span>").addClass("ttiptext")
       let guestlist = $("<ul>").addClass("list-group")
       members.forEach(function(member) {
-        let li = $("<li>").addClass("list-group-item text-dark").text(member.User.name)
+        let li = $("<li>").addClass("list-group-item text-dark").text(member.User.email)
         guestlist.append(li)
       })
       tooltip.append(guestlist)
@@ -137,7 +137,7 @@ let renderMyReviews = function(reviews) {
     }).val(review.description)
     let descriptionDiv = $("<div>").addClass("form-group").append($("<label>").text("Review Description"), description)
 
-    let btn = $("<button>").addClass("mr-3 btn btn-dark update-event").data("id", review.id).text("Update")
+    let btn = $("<button>").addClass("mr-3 btn btn-dark update-event").attr('id', 'update-btn').data("id", review.id).text("Edit")
     let btn2 = $("<button>").addClass("btn btn-dark delete").data("id", review.id).text("Delete")
     let form = $("<form>").append(titleDiv, descriptionDiv, btn, btn2)
     card.append(form)
@@ -310,7 +310,7 @@ let getMembers = function(reviewId) {
 
 // ----- Event Listeners
 
-$(document).on("ready", authUser())
+// $(document).on("ready", authUser())
 
 // -- Nav Links
 // logout link
@@ -413,7 +413,9 @@ $(document).on("click", "button.unfollow", function(review) {
 })
 
 // update button in my reviews component
-$(document).on("click", "button.update-review", function(review) {
+// $(document).on("click", "button.update-review", function(review) {
+$(document).on("click", "#update-btn", function(review) {
+  console.log('OVER HERE!!!!!!')
   review.preventDefault();
   let btn = review.target;
   let reviewId = $(btn).data("id");
@@ -422,6 +424,6 @@ $(document).on("click", "button.update-review", function(review) {
     description: $(`#review${reviewId}-description`).val().trim(),
   }
   updateReview(reviewId, data).then(function() {
-    window.location.replace("./tvreviews")
+    window.location.replace("./myreviews")
   })
 })

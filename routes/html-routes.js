@@ -12,7 +12,7 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/members");
     }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+    res.sendFile(path.join(__dirname, "../views/signup.html"));
   });
 
   app.get("/login", function(req, res) {
@@ -20,34 +20,40 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/members");
     }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+    res.sendFile(path.join(__dirname, "../views/login.html"));
   });
 
   // isAuthenticated middleware added to route
   // if a user who is not logged in tries to access route; will be 
   // redirected to the signup page
   app.get("/members", isAuthenticated, function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
+    res.sendFile(path.join(__dirname, "../views/members.html"));
   });
 
   // html routes to individual pages
   app.get("/tvreviews", function(req,res) {
-    res.sendFile("/tvreviews.html", { root: path.join(__dirname, "../public") })
+    // res.sendFile(path.join(__dirname, "../views/tvreviews.html"));
+    res.sendFile("/tvreviews.html", { root: path.join(__dirname, "../views") })
   })
   app.get("/myreviews", function(req,res) {
-    res.sendFile("/myreviews.html", { root: path.join(__dirname, "../public") })
+    // res.sendFile(path.join(__dirname, "../views/myreviews.html"));
+    res.sendFile("/myreviews.html", { root: path.join(__dirname, "../views") })
   })
   app.get("/following", function(req,res) {
-    res.sendFile("/following.html", { root: path.join(__dirname, "../public") })
+    // res.sendFile(path.join(__dirname, "../views/following.html"));
+    res.sendFile("/following.html", { root: path.join(__dirname, "../views") })
   })
   app.get("/create", function(req,res) {
-    res.sendFile("/create.html", { root: path.join(__dirname, "../public") })
+    // res.sendFile(path.join(__dirname, "../views/create.html"));
+    res.sendFile("/create.html", { root: path.join(__dirname, "../views") })
   })
   app.get("/profile", function(req,res) {
-    res.sendFile("/profile.html", { root: path.join(__dirname, "../public") })
+    // res.sendFile(path.join(__dirname, "../views/profile.html"));
+    res.sendFile("/profile.html", { root: path.join(__dirname, "../views") })
   })
   // send default page to all routes that are undefined
   app.get("*", function(req,res) {
-    res.sendFile("/index.html", { root: path.join(__dirname, "../public") })
+    // res.sendFile(path.join(__dirname, "../views/index.html"));
+    res.sendFile("/index.html", { root: path.join(__dirname, "../views") })
   })
 };

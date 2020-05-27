@@ -93,16 +93,6 @@ module.exports = function(app) {
       where: {
         hostId: req.params.id
       },
-      // join Review table for event data
-      include: {
-        model: db.Review,
-        // join User table inside of review data for Host Name
-        include: {
-          model: db.User,
-          as: "host",
-          attributes: ["email"]
-        }
-      },
     }).then(function(reviews) {
       res.json(reviews)
     }).catch(function(err) {
