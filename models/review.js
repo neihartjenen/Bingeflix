@@ -18,10 +18,10 @@ module.exports = function (sequelize, DataTypes) {
       // Each Review belongs to a User
       models.Review.belongsTo(models.User, { as: "host" })
       // Each Review can have many UserReviews
-      models.Event.hasMany(models.UserEvent, {
-        // this deletes all associated UserReviews when an Review is deleted
-        onDelete: "cascade"
-      })
+      // models.Event.hasMany(models.UserEvent, {
+      //   // this deletes all associated UserReviews when an Review is deleted
+      //   onDelete: "cascade"
+      // })
     }
     return Review;
   }

@@ -1,4 +1,3 @@
-  
 USE bingeflix_db;
 
 INSERT INTO Users (userID, name, zipCode, nickName, createdPosts)
@@ -16,4 +15,3 @@ INSERT INTO posts (userID, showName, createdPosts, createdComments)
 VALUES ("joe.brown@email.com", "The Office", "The Office Summary", "Great Post!")
 ("gwhite@email.com", "The Office", "The Office Summary", "Great Post!")
 ("tyler@email.com", "Arrested Development", "Is Arrested Development any good?", "Great Post!")
-
