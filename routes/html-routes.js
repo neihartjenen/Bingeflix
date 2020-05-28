@@ -35,6 +35,10 @@ module.exports = function(app) {
     // res.sendFile(path.join(__dirname, "../views/tvreviews.html"));
     res.sendFile("/tvreviews.html", { root: path.join(__dirname, "../views") })
   })
+  app.get("/reviews", function(req,res) {
+    // res.sendFile(path.join(__dirname, "../views/tvreviews.html"));
+    res.sendFile("/reviews.html", { root: path.join(__dirname, "../views") })
+  })
   app.get("/myreviews", function(req,res) {
     // res.sendFile(path.join(__dirname, "../views/myreviews.html"));
     res.sendFile("/myreviews.html", { root: path.join(__dirname, "../views") })

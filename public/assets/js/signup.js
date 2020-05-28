@@ -11,6 +11,7 @@ $(document).ready(function() {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
+    console.log(email, emailinput)
 
     if (!userData.email || !userData.password) {
       return;
@@ -19,6 +20,7 @@ $(document).ready(function() {
     signUpUser(userData.email, userData.password);
     emailInput.val("");
     passwordInput.val("");
+    console.log(emailinput);
   });
 
   // post to the signup route. if succesful, redirect to members page
