@@ -122,13 +122,6 @@ module.exports = function(app) {
     }).then(function(users) {
       console.log(users)
       console.log("HERE!!!")
-      // create a new array
-      // let data = [];
-      // // push all review information into data to omit unneeded data
-      // users.forEach(function(user) {
-      //   console.log(user.Review)
-      //   data.push(user.Review)
-      // })
       res.json(users);
     }).catch(function(err) {
       console.log(err);

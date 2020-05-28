@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS reviews_db;
 CREATE DATABASE reviews_db;
 
-USE review_db;
+USE reviews_db;
 
 CREATE TABLE Users (
   id INT NOT NULL AUTO_INCREMENT,
