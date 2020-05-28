@@ -74,7 +74,7 @@ let renderReviews = function(reviews) {
       let tooltip = $("<span>").addClass("ttiptext")
       let guestlist = $("<ul>").addClass("list-group")
       members.forEach(function(member) {
-        let li = $("<li>").addClass("list-group-item text-dark").text(member.User.name)
+        let li = $("<li>").addClass("list-group-item text-dark").text(member.User.email)
         guestlist.append(li)
       })
       tooltip.append(guestlist)
@@ -103,7 +103,7 @@ let renderReviewsFollowing = function(reviews) {
       let tooltip = $("<span>").addClass("ttiptext")
       let guestlist = $("<ul>").addClass("list-group")
       members.forEach(function(member) {
-        let li = $("<li>").addClass("list-group-item text-dark").text(member.User.name)
+        let li = $("<li>").addClass("list-group-item text-dark").text(member.User.email)
         guestlist.append(li)
       })
       tooltip.append(guestlist)
@@ -137,7 +137,7 @@ let renderMyReviews = function(reviews) {
     }).val(review.description)
     let descriptionDiv = $("<div>").addClass("form-group").append($("<label>").text("Review Description"), description)
 
-    let btn = $("<button>").addClass("mr-3 btn btn-dark update-event").attr('id', 'update-btn').data("id", review.id).text("Update")
+    let btn = $("<button>").addClass("mr-3 btn btn-dark update-event").attr('id', 'update-btn').data("id", review.id).text("Edit")
     let btn2 = $("<button>").addClass("btn btn-dark delete").data("id", review.id).text("Delete")
     let form = $("<form>").append(titleDiv, descriptionDiv, btn, btn2)
     card.append(form)
@@ -310,7 +310,7 @@ let getMembers = function(reviewId) {
 
 // ----- Event Listeners
 
-$(document).on("ready", authUser())
+// $(document).on("ready", authUser())
 
 // -- Nav Links
 // logout link
