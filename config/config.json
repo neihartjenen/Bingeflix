@@ -16,10 +16,10 @@
   },
 
   "production": {
-    "username": "root",
-    "password": "x5y6eLST$",
-    "database": "reviews_db",
-    "host": "127.0.0.1",
+    "username": "jkqneadk5iq87ybi",
+    "password": "s5qe834sys6binxx",
+    "database": "mdlvvgb1fllz3d6g",
+    "host": "h40lg7qyub2umdvb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }
