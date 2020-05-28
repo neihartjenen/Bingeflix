@@ -1,6 +1,6 @@
 //needs jquery CDN
 
-import { response } from "express";
+// import { response } from "express";
 
 $(document).ready(function () {
 
@@ -12,7 +12,7 @@ $(document).ready(function () {
 
         var resultsDiv = $("<div>")
 
-        var title = $("<p>").text(data.Title);
+        var title = $("<h3>").text(data.Title);
         var actors = $("<p>").text(data.Actors);
         var year = $("<p>").text(data.Year);
         var plot = $("<p>").text(data.Plot);
@@ -21,9 +21,9 @@ $(document).ready(function () {
         poster.attr("src", data.Poster);
 
         p.append(title, actors, year, plot);
-
-        resultsDiv.append(p);
         resultsDiv.append(poster);
+        resultsDiv.append(p);
+      
 
         $("#searchResults").prepend(resultsDiv);
 
@@ -60,7 +60,7 @@ $(document).ready(function () {
         //saves user input as the movie/show being searched for
         var movie = document.getElementById("userInput").value;
         //runs search movie
-        searchDB(movie)
+        searchOMDB(movie)
         console.log(movie);
     });
 
@@ -89,82 +89,82 @@ $(document).ready(function () {
    featuredData($("#featured3"), "outer banks");
 
 
-   function searchDB (userInput) {
-       //needs to be connected to shows db by the shows path that still needs to be made
-    var queryURL = "/api/shows";
-    return $.ajax({
-        url: queryURL,
-        method: "GET",
-        data: {
-            title: userInput
-        }
-    }).then(function (response) {
-        console.log(response);
-        if (response.data.length > 0){
-            showId = response.data[0].id
-            createContent(response.data[0]);
-        } else {
-            searchOMDB(userInput);
-        }
-    });
-   }
+//    function searchDB (userInput) {
+//        //needs to be connected to shows db by the shows path that still needs to be made
+//     var queryURL = "/api/shows";
+//     return $.ajax({
+//         url: queryURL,
+//         method: "GET",
+//         data: {
+//             title: userInput
+//         }
+//     }).then(function (response) {
+//         console.log(response);
+//         if (response.data.length > 0){
+//             showId = response.data[0].id
+//             createContent(response.data[0]);
+//         } else {
+//             searchOMDB(userInput);
+//         }
+//     });
+//    }
 
    
 
-   //call this inside of on click funtion to submit a new review
-   // save userReview in on click function
-   function pushToReviewDB(userReview, showId) {
-    var queryURL = "/api/reviews";
-    return $.ajax({
-        url: queryURL,
-        method: "POST",
-        data: {
-            showId: showId,
-            review: userReview
-        }
-    }).then(function (response) {
-        console.log("success");
+//    //call this inside of on click funtion to submit a new review
+//    // save userReview in on click function
+//    function pushToReviewDB(userReview, showId) {
+//     var queryURL = "/api/reviews";
+//     return $.ajax({
+//         url: queryURL,
+//         method: "POST",
+//         data: {
+//             showId: showId,
+//             review: userReview
+//         }
+//     }).then(function (response) {
+//         console.log("success");
        
-    }).catch(function(err){
-        console.error(err);
-    })
-   }
+//     }).catch(function(err){
+//         console.error(err);
+//     })
+//    }
 
-   function pushToShowDB(userInput){
-    var queryURL = "/api/shows";
-    return $.ajax({
-        url: queryURL,
-        method: "POST",
-        data: {
-            showData: userInput
-        }
-    }).then(function (response) {
-        console.log("success");
+//    function pushToShowDB(userInput){
+//     var queryURL = "/api/shows";
+//     return $.ajax({
+//         url: queryURL,
+//         method: "POST",
+//         data: {
+//             showData: userInput
+//         }
+//     }).then(function (response) {
+//         console.log("success");
        
-    }).catch(function(err){
-        console.error(err);
-    })
-   }
+//     }).catch(function(err){
+//         console.error(err);
+//     })
+//    }
    
-   function submitReview() {
-    var title = $("<p>").text(data.Title);
-    var actors = $("<p>").text(data.Actors);
-    var year = $("<p>").text(data.Year);
-    var plot = $("<p>").text(data.Plot);
+//    function submitReview() {
+//     var title = $("<p>").text(data.Title);
+//     var actors = $("<p>").text(data.Actors);
+//     var year = $("<p>").text(data.Year);
+//     var plot = $("<p>").text(data.Plot);
     
-    var poster = data.Poster
-    var showData = {
-        Title: data.title,
-        Actors: data.actors,
-        //go through rest of data
-    }
+//     var poster = data.Poster
+//     var showData = {
+//         Title: data.title,
+//         Actors: data.actors,
+//         //go through rest of data
+//     }
 
-    //then grab userReview data
-   pushToShowDB(showData).then(function(){
-       pushToReviewDB(userReview)
-   })
+//     //then grab userReview data
+//    pushToShowDB(showData).then(function(){
+//        pushToReviewDB(userReview)
+//    })
    
-   }
+//    }
 
    
 });

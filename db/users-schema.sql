@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS bingeflix_db;
-CREATE DATABASE bingeflix_db;
+DROP DATABASE IF EXISTS reviews_db;
+CREATE DATABASE reviews_db;
 
-USE bingeflix_db;
+USE reviews_db;
 
 CREATE TABLE Users (
   id INT NOT NULL AUTO_INCREMENT,
@@ -12,6 +12,41 @@ CREATE TABLE Users (
   PRIMARY KEY (id)
 );
 
+<<<<<<< HEAD
+=======
+INSERT INTO Users (email, password, createdAt, updatedAt)
+VALUES ("test@test.com", "test", '1901-01-01', '1901-01-01'),
+("john@doe.com", "test", '1901-01-01', '1901-01-01');
+
+CREATE TABLE Reviews (
+  id INT NOT NULL AUTO_INCREMENT,
+  title VARCHAR(100) NOT NULL,
+  description VARCHAR(300) NOT NULL,
+  createdAt datetime,
+  updatedAt datetime,
+  hostId INT,
+  UserId INT,
+  PRIMARY KEY (id),
+  FOREIGN KEY (hostId)
+  REFERENCES Users (id) ON DELETE SET NULL ON UPDATE CASCADE,
+  FOREIGN KEY (UserId)
+  REFERENCES Users (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE UserReviews (
+  id INT NOT NULL AUTO_INCREMENT,
+  createdAt datetime,
+  updatedAt datetime,
+  ReviewId INTEGER, 
+  UserId INTEGER,
+  PRIMARY KEY (id), 
+  FOREIGN KEY (ReviewId)  
+  REFERENCES Reviews (id) ON DELETE CASCADE ON UPDATE CASCADE, 
+  FOREIGN KEY (UserId) 
+  REFERENCES Users (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+>>>>>>> 125741d624b88ba9d5c31f1fec4c6e143c8b9729
 CREATE TABLE shows(
 id INT NOT NULL AUTO_INCREMENT,
 showsID INT NOT NULL,
@@ -27,4 +62,9 @@ postsID INT NOT NULL,
 posts VARCHAR (150) NOT NULL,
 showsID INT NOT NULL,
 PRIMARY KEY (id)
+<<<<<<< HEAD
 );
+=======
+);
+
+>>>>>>> 125741d624b88ba9d5c31f1fec4c6e143c8b9729

@@ -9,6 +9,7 @@ body {
     margin-left: 80px;
     background-color: rgb(193, 175, 230);
     background-repeat: repeat-x;
+    font-size:25px;
 }
 
 .container {
@@ -117,11 +118,17 @@ input[type=text]:focus {
   .container {
     display: flex;
     width: 95%;
-    padding: 4% 2%;
+    padding: 1%;
     box-sizing: border-box;
     height: 100%;
   }
-  
+  .container p{
+      font-size: 1.8rem;
+  }
+ #searchResults img{
+    margin: 0px 10px;
+    float: left;
+  }
   .box {
     flex: 1;
     overflow: hidden;
@@ -147,4 +154,9 @@ input[type=text]:focus {
     width: 600px;
     padding-bottom: 10px;
     margin: 0 auto;
+}
+
+.uk-form-label {
+  
+    font-size: 1.5rem;
 }
