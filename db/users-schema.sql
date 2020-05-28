@@ -12,6 +12,8 @@ CREATE TABLE Users (
   PRIMARY KEY (id)
 );
 
+<<<<<<< HEAD
+=======
 INSERT INTO Users (email, password, createdAt, updatedAt)
 VALUES ("test@test.com", "test", '1901-01-01', '1901-01-01'),
 ("john@doe.com", "test", '1901-01-01', '1901-01-01');
@@ -44,6 +46,7 @@ CREATE TABLE UserReviews (
   REFERENCES Users (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+>>>>>>> 125741d624b88ba9d5c31f1fec4c6e143c8b9729
 CREATE TABLE shows(
 id INT NOT NULL AUTO_INCREMENT,
 showsID INT NOT NULL,
@@ -59,5 +62,9 @@ postsID INT NOT NULL,
 posts VARCHAR (150) NOT NULL,
 showsID INT NOT NULL,
 PRIMARY KEY (id)
+<<<<<<< HEAD
+);
+=======
 );
 
+>>>>>>> 125741d624b88ba9d5c31f1fec4c6e143c8b9729
