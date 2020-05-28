@@ -1,16 +1,23 @@
+$(document).ready (function (){
+
+
+
 // globally set userId
 let userId = localStorage.getItem("user")
 
-// redirect user to login if user isn't found in localStorage -- for handling refreshes
-let authUser = function() {
-  if (!window.localStorage.getItem("user")) {
-    // send login page if user doesn't exist
-    window.location.replace("./home")
-  } else {
-    let path = window.location.pathname;
-    renderContent(path)
-  }
-}
+// // redirect user to login if user isn't found in localStorage -- for handling refreshes
+// let authUser = function() {
+//   if (!window.localStorage.getItem("user")) {
+//     // send login page if user doesn't exist
+//     window.location.replace("./home")
+//   } else {
+//     let path = window.location.pathname;
+//     renderContent(path)
+
+//   }
+// }
+
+    
 
 // checks if an object is empty e.g: let emptyObj = {}
 let isObjEmpty = function(obj) {
@@ -25,6 +32,7 @@ let isObjEmpty = function(obj) {
 // render Content based on argument
 // in this case, content = window.location.pathname
 let renderContent = function(content){
+  console.log(content)
   switch (content) {
     case "/myreviews":
       // get reviews made by user from server
@@ -51,6 +59,7 @@ let renderContent = function(content){
     default:
       // get all reviews from server
       getReviewInfo().then(function(reviews) {
+        console.log("TEST!!!!!!!", reviews)
         // then render the components to display on a page
         renderReviews(reviews);
       })
@@ -228,7 +237,7 @@ let renderProfilePage = function() {
 // API CALLS
 let getReviewInfo = function() {
   return $.ajax({
-    url: "/api/review",
+    url: "/api/tvreview",
     type: "GET"
   })
 }
@@ -426,4 +435,10 @@ $(document).on("click", "#update-btn", function(review) {
   updateReview(reviewId, data).then(function() {
     window.location.replace("./myreviews")
   })
+
 })
+
+let path = window.location.pathname;
+    renderContent(path)
+  // authUser()
+});
