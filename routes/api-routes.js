@@ -89,7 +89,7 @@ module.exports = function(app) {
   })
 
   // route used to get all reviews made by user
-  app.get("/api/user/:id/reviews", function(req,res){
+  app.get("/api/user/:id/myreviews", function(req,res){
     // search Review table for all reviews where hostId matches req.params.id
     db.Review.findAll({
       where: {
@@ -132,7 +132,7 @@ module.exports = function(app) {
   })
 
   // route used to get all reviews
-  app.get("/api/review", function(req,res){
+  app.get("/api/tvreviews", function(req,res){
     // search Review table for all events
     db.Review.findAll({
       // join User since it contains the host's name
@@ -152,7 +152,7 @@ module.exports = function(app) {
   })
 
   // route used to create a new review
-  app.post("/api/review", function(req,res){
+  app.post("/api/create", function(req,res){
     // create a new review with columns and values specified in req.body
     console.log('this is working!', req.body)
     db.Review.create(req.body)
