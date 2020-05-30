@@ -13,12 +13,6 @@ CREATE TABLE Users (
 );
 
 
-
-INSERT INTO Users (email, password, createdAt, updatedAt)
-VALUES ("test@test.com", "test", '1901-01-01', '1901-01-01'),
-("john@doe.com", "test", '1901-01-01', '1901-01-01');
-
-
 CREATE TABLE Reviews (
   id INT NOT NULL AUTO_INCREMENT,
   title VARCHAR(100) NOT NULL,
@@ -58,9 +52,5 @@ postsID INT NOT NULL,
 posts VARCHAR (150) NOT NULL,
 showsID INT NOT NULL,
 PRIMARY KEY (id)
-
 );
-
-);
-
 
