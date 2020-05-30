@@ -13,9 +13,8 @@ module.exports = function(app) {
 
     // send the user back the route to the members page because the redirect will happen on the front end
     // they won't be able to access this page if they aren't authed
-    // let userOIbj = { email: res.body.email, password: res.body.password}
+    // let userOIbj = { name: res.body.name, id: res.body.id}
     // res.json(userObj);
-    // res.json("/members");
     res.json("/members");
   });
 
@@ -91,11 +90,10 @@ module.exports = function(app) {
 
   // route used to get all reviews made by user
   app.get("/api/user/:id/reviews", function(req,res){
-    // search Review table for all reviews where postId matches req.params.id
+    // search Review table for all reviews where hostId matches req.params.id
     db.Review.findAll({
       where: {
-        postId: req.params.id
-        // UserId: req.params.id
+        hostId: req.params.id
       },
     }).then(function(reviews) {
       res.json(reviews)
@@ -115,10 +113,10 @@ module.exports = function(app) {
       // join Review table for event data
       include: {
         model: db.Review,
-        // join User table inside of review data for Post Name
+        // join User table inside of review data for Host Name
         include: {
           model: db.User,
-          as: "post",
+          as: "host",
           attributes: ["email"]
         }
       },
@@ -137,11 +135,11 @@ module.exports = function(app) {
   app.get("/api/review", function(req,res){
     // search Review table for all events
     db.Review.findAll({
-      // join User since it contains the post's name
+      // join User since it contains the host's name
       include: [
         {
           model: db.User,
-          as: "post",
+          as: "host",
           attributes: ["email"]
         }
       ],
@@ -160,8 +158,7 @@ module.exports = function(app) {
     db.Review.create(req.body)
       .then(function(reviewData) {
         db.UserReview.create({
-          // postId: req.body.postId,
-          UserId: req.body.postId,
+          UserId: req.body.hostId,
           ReviewId: reviewData.id
         }).then(function() {
           res.send(true);
@@ -256,11 +253,6 @@ module.exports = function(app) {
       console.log(err);
       res.send(false);
     })
-  })
-
-  //added to search for shows - Dylan
-  app.get("/api/shows", function (req,res){
-    res.json([])
   })
 
 };
