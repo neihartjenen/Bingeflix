@@ -1,6 +1,8 @@
 {
   "development": {
     "username": "root",
+    "password": "Childofmine02",
+    "database": "reviews_db",
     "password": "x5y6eLST$",
     "database": "reviewsB_db",
     "host": "127.0.0.1",
@@ -9,17 +11,23 @@
   },
   "test": {
     "username": "root",
+    "password": "Childofmine02",
     "password": "x5y6eLST$",
-    "database": "reviewsB_db",
+    "database": "reviews_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
 
   "production": {
+    "username": "root",
+    "password": "Childofmine02",
+    "database": "reviews_db",
+    "host": "127.0.0.1",
     "username": "jkqneadk5iq87ybi",
     "password": "s5qe834sys6binxx",
     "database": "mdlvvgb1fllz3d6g",
     "host": "h40lg7qyub2umdvb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+
     "dialect": "mysql"
   }
 }
