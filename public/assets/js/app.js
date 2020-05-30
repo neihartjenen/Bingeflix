@@ -55,8 +55,8 @@ $(document).ready (function (){
           renderReviewsFollowing(reviews);
         })
         break;
-      case "/profile":
-        renderProfilePage();
+      case "/review":
+        renderReviewPage();
         break;
       default:
         // get all reviews from server
