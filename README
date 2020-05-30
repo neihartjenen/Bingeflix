@@ -1,0 +1,53 @@
+# BINGEFLIX
+
+
+BINGEFLIX LINK -   https://secret-bayou-81319.herokuapp.com/
+
+
+* Team Members: Dylan Jambro, Lindsey Tummond, Jenen Neihart, Danielle Pollesche
+
+
+* Project Description: This app is to allow you to create your own review for your favorite or not so favorite show. 
+It will allow you to see other people’s reviews as well as save your reviews
+
+
+On the main screen you will want to choose if you log in because you are a returning user or sign up because you’re a new user. Once you have done either action it will take you to your own personal sign in page. Here you will have 3 different options. First you will see the tab to click on for the home screen and you will be able to see all the new updated reviews. Next you will see the Reviews tab. Here if you click on this you will be able to search for the reviews you are wanting to view. In addition on your home screen you can click on the button that says “ Create TV Reveiws” and you will be able to create your own review here. If you want to keep track of your reviews, that’s no problem all the reviews that you make are stored. Simply click on the link “My TV Reviews” and you will see a list of all your reviews.
+
+
+•	MVP:
+
+
+
+# Technologies Used: 
+
+1.	JQuery
+    a.	Access to change the screen content
+2.	Ajax 
+    a.	Allows different information to be changed behind the scenes
+3.	MYSQL
+    a.	This is the database that holds the different reviews and client information
+4.	Express
+    a.	For HTML Routing and API’s
+5.	Sequilize
+    a.	JS Style access to MYSQL database
+6.	Passport JS
+    a.	Password Protected User Database
+7.	Bootstrap
+    a.	Front-End Framework
+8.	UIKit
+    a.	Front-End Framework
+9.	Heroku
+    a.	Platform for App
+
+
+
+
+# Getting Started
+
+Must Install First
+•	MySql
+•	Node.js
+
+Installing:
+
+If you want to view the site from the Users Perspective you can visit it through Heroku Here:  https://secret-bayou-81319.herokuapp.com/
