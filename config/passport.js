@@ -31,6 +31,9 @@ passport.use(new LocalStrategy(
           message: "Incorrect password"
         });
       }
+
+      // localStorage.setItem('user', 'mikey');
+      // console.log(window.localStorage)
       // if none of the above, return the user
       return done(null, dbUser);
     });
