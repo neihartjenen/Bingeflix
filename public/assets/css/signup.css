@@ -1,7 +1,7 @@
 *{margin: 0; padding:0}
 body{
-    background-image: url("../images/6243.jpg");   
-    }
+    background-color: lightgray;
+}
 .container {
     width:550px;
     height: auto;
@@ -9,7 +9,7 @@ body{
     background-color: black;
     border-radius: 10px;
     box-shadow: 0 0 30px 0 purple;
-    margin-top: 10%;
+    margin: auto;
     position: relative;
 }
 

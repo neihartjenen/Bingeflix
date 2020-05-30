@@ -26,7 +26,4 @@ postsID INT NOT NULL,
 posts VARCHAR (150) NOT NULL,
 PRIMARY KEY (id)
 );
-<<<<<<< HEAD
-=======
 
->>>>>>> 125741d624b88ba9d5c31f1fec4c6e143c8b9729
