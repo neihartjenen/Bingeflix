@@ -1,7 +1,11 @@
 $(document).ready (function (){
 
+  // localStorage.setItem('myCat', 'Tom');
+  // console.log(window.localStorage)
+
   // globally set userId
-  let userId = localStorage.getItem("user")
+  let userId = window.localStorage.getItem("user")
+  // // let userId = localStorage.getItem(userId)
   console.log(userId)
   console.log(typeof userId)
 
@@ -71,7 +75,7 @@ $(document).ready (function (){
     reviews.forEach(function(review) {
       let cardbody = $("<div>").addClass("card-body")
       let title = $("<h5>").addClass("mb-0").text(review.title)
-      let host = $("<div>").addClass("d-flex text-muted").text(`Posted by ${review.host.email}`)
+      let post = $("<div>").addClass("d-flex text-muted").text(`Posted by ${review.post.email}`)
       let description = $("<p>").addClass("card-text").text(review.description)
       let btn = $("<button>").addClass("btn btn-dark attend").data("id", review.id).text("Following")
   
@@ -86,8 +90,8 @@ $(document).ready (function (){
         })
         tooltip.append(guestlist)
         guests.append(tooltip)
-        host.append(guests);
-        cardbody.append(title, host, $("<hr>"), description, btn)
+        post.append(guests);
+        cardbody.append(title, post, $("<hr>"), description, btn)
         let card = $("<div>").addClass("card mb-3").append(cardbody)
         content.append(card)
       })
@@ -102,7 +106,7 @@ $(document).ready (function (){
     reviews.forEach(function(review) {
       let cardbody = $("<div>").addClass("card-body")
       let title = $("<h5>").addClass("mb-0").text(review["Review.title"])
-      let host = $("<div>").addClass("d-flex text-muted").text(`Posted by ${review["Review.host.email"]}`)
+      let post = $("<div>").addClass("d-flex text-muted").text(`Posted by ${review["Review.post.email"]}`)
       let description = $("<p>").addClass("card-text").text(review["Review.description"])
       let btn = $("<button>").addClass("btn btn-dark unattend").data("id", review["Review.id"]).text("Unfollow")
       getMembers(review["Review.id"]).then(function(members) {
@@ -115,8 +119,8 @@ $(document).ready (function (){
         })
         tooltip.append(guestlist)
         guests.append(tooltip)
-        host.append(guests);
-        cardbody.append(title, host, $("<hr>"), description, btn)
+        post.append(guests);
+        cardbody.append(title, post, $("<hr>"), description, btn)
         let card = $("<div>").addClass("card mb-3").append(cardbody)
         content.append(card)
       })
@@ -318,6 +322,7 @@ $(document).ready (function (){
   // ----- Event Listeners
   
   // $(document).on("ready", authUser())
+
   
   // -- Nav Links
   // logout link
@@ -341,8 +346,9 @@ $(document).ready (function (){
       let data = {
         title: reviewTitle,
         description: reviewDescription,
-        hostId: userId
+        postId: userId
       }
+      
       createReview(data).then(function() {
         window.location.replace("./myreviews")
       })
