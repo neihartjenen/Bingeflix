@@ -44,7 +44,8 @@ module.exports = function(sequelize, DataTypes) {
   //   user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   // });
   // return User;
-
+  
+ // before a User is created, we will automatically hash their password
   User.beforeCreate(user => {
     user.password = bcrypt.hashSync(
       user.password,

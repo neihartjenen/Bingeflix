@@ -16,12 +16,13 @@ module.exports = function (sequelize, DataTypes) {
     // associating Review table to Users and UserReviews
     Review.associate = function(models){
       // Each Review belongs to a User
-      models.Review.belongsTo(models.User, { as: "host" })
+      // models.Review.belongsTo(models.User, { as: "host" })
+      models.Review.belongsTo(models.User, { as: "post" })
       // Each Review can have many UserReviews
-      // models.Event.hasMany(models.UserEvent, {
-      //   // this deletes all associated UserReviews when an Review is deleted
-      //   onDelete: "cascade"
-      // })
+      models.Review.hasMany(models.UserReview, {
+        // this deletes all associated UserReviews when an Review is deleted
+        onDelete: "cascade"
+      })
     }
     return Review;
   }

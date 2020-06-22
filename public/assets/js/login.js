@@ -24,15 +24,36 @@ $(document).ready(function() {
 
   // loginUser does a post to our "api/login" route and if successful, redirects to the members page
   function loginUser(email, password) {
+    // $.post("/api/login", {
+    //   email: email,
+    //   password: password
+    // }).then(function(data) {
+    //   window.location.replace(data);
+    //   // if error, log error
+    // }).catch(function(err) {
+    //   console.log(err);
+    // });
+
     $.post("/api/login", {
       email: email,
       password: password
     }).then(function(data) {
-      window.location.replace(data);
+      if (data) {
+        // user successfully registered, so do the following
+        window.localStorage.setItem("user", data)
+        $("#auth").empty();
+        window.location.replace("./members");
+      } else {
+        // user failed to registered, so do the following
+        console.log("registration failed")
+        $("#email").val("").focus();
+      }
+      // window.location.replace(data);
       // if error, log error
-    }).catch(function(err) {
-      console.log(err);
-    });
+    })
+    // .catch(function(err) {
+    //   console.log(err);
+    // });
   }
 
 });
